@@ -1,5 +1,46 @@
 import type { LucideIcon } from "lucide-react";
-import { Plug, PlayCircle, UserCheck, TrendingUp } from "lucide-react";
+import {
+  Factory,
+  HandCoins,
+  Landmark,
+  Plug,
+  PlayCircle,
+  Ship,
+  Sprout,
+  Stethoscope,
+  TrendingUp,
+  UserCheck,
+} from "lucide-react";
+
+/** How we work — shown on the about page and as "Why GARV AI LABS" on the homepage. */
+export const principles: { title: string; body: string }[] = [
+  {
+    title: "One workflow first",
+    body: "We start with a single process, not a platform rollout. The first thing we build earns the trust and the rules that make the second thing fast.",
+  },
+  {
+    title: "A human owns the irreversible",
+    body: "Money moved, records changed, anything a customer cannot undo — the system prepares it and stops. A named person approves, with the evidence attached.",
+  },
+  {
+    title: "It has to work in the field",
+    body: "Our software runs at rural procurement centres and on ships. Offline operation, mid-range hardware and non-technical users are the normal case, not the edge case.",
+  },
+  {
+    title: "We will say when it is not worth it",
+    body: "Not every process should be automated. If a spreadsheet and a clear owner would fix it, we will tell you that instead of quoting for a build.",
+  },
+];
+
+/** Sectors we work in. Only the first four have case studies so far. */
+export const sectors: { icon: LucideIcon; name: string }[] = [
+  { icon: Sprout, name: "Agriculture & FPOs" },
+  { icon: Stethoscope, name: "Healthcare & HealthTech" },
+  { icon: Landmark, name: "Government & public sector" },
+  { icon: Ship, name: "Maritime & logistics" },
+  { icon: HandCoins, name: "BFSI" },
+  { icon: Factory, name: "Retail & manufacturing" },
+];
 
 /** The four steps every engagement runs through, in order. */
 export const steps: { n: string; icon: LucideIcon; title: string; body: string }[] = [

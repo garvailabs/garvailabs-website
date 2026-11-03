@@ -2,200 +2,159 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 import { Rise } from "@/components/ui/rise";
+import { CardIcon, SectionHeading } from "@/components/ui/section-heading";
+import { WhyUs } from "@/components/why-us";
 import { BookCallCta } from "@/components/cal/book-call-button";
 import { CompanyEmailLink } from "@/components/company-email-link";
 import { site } from "@/lib/site";
 import { services } from "@/lib/services";
+import { sectors } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "About",
   description:
     "GARV AI LABS builds AI-native systems for businesses in India and beyond — from Noida, Uttar Pradesh.",
+  alternates: { canonical: "/about" },
 };
 
-const principles = [
-  {
-    title: "One workflow first",
-    body: "We start with a single process, not a platform rollout. The first thing we build earns the trust and the rules that make the second thing fast.",
-  },
-  {
-    title: "A human owns the irreversible",
-    body: "Money moved, records changed, anything a customer cannot undo — the system prepares it and stops. A named person approves, with the evidence attached.",
-  },
-  {
-    title: "It has to work in the field",
-    body: "Our software runs at rural procurement centres and on ships. Offline operation, mid-range hardware and non-technical users are the normal case, not the edge case.",
-  },
-  {
-    title: "We will say when it is not worth it",
-    body: "Not every process should be automated. If a spreadsheet and a clear owner would fix it, we will tell you that instead of quoting for a build.",
-  },
-];
-
-const sectors = [
-  "Agriculture & FPOs",
-  "Healthcare & HealthTech",
-  "Government & public sector",
-  "Maritime & logistics",
-  "BFSI",
-  "Retail & manufacturing",
-];
+const contactRow = "flex min-h-11 items-center gap-3 text-base text-text transition-colors hover:text-accent-text";
+const contactIcon = "flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-second-soft text-second";
 
 export default function AboutPage() {
   return (
     <>
-      <section className="page-top">
+      <section className="page-top pb-14 md:pb-20">
         <div className="shell">
-          <Rise from="soft">
-            <p className="eyebrow">About</p>
-          </Rise>
-          <Rise delay={0.07} from="up">
-            <h1 className="mt-5 max-w-[20ch] text-6xl">
-              We build AI-native systems that do the work.
-            </h1>
-          </Rise>
-          <Rise delay={0.14} from="soft">
-            <p className="mt-6 max-w-[58ch] text-md leading-[1.65] text-muted">
-              GARV AI LABS declutters operations, unites disconnected systems, and turns data into
-              decisive action. We work from Noida, Uttar Pradesh, with clients across India and
-              abroad — in agriculture, healthcare, government and maritime.
-            </p>
-          </Rise>
+          <div className="mx-auto max-w-3xl text-center">
+            <Rise from="soft">
+              <p className="eyebrow">About</p>
+            </Rise>
+            <Rise delay={0.07} from="up">
+              <h1 className="tight mx-auto mt-4 max-w-[20ch] text-5xl sm:text-6xl">
+                We build AI&#8209;native systems that do the work.
+              </h1>
+            </Rise>
+            <Rise delay={0.14} from="soft">
+              <p className="mx-auto mt-6 max-w-[60ch] text-lg text-muted">
+                GARV AI LABS declutters operations, unites disconnected systems, and turns data into
+                decisive action. We work from Noida, Uttar Pradesh, with clients across India and
+                abroad — in agriculture, healthcare, government and maritime.
+              </p>
+            </Rise>
+          </div>
         </div>
       </section>
 
       {/* what we do */}
-      <section className="band">
-        <div className="shell grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
-          <Rise from="left">
-            <h2 className="text-4xl">What we actually do</h2>
-            <div className="mt-7 flex flex-col gap-5 text-base leading-relaxed text-muted md:text-md">
-              <p>
-                Most of our projects start the same way: somebody is doing something by hand,
-                repeatedly, and the cost of that is no longer invisible. A field officer grading
-                seed by eye. A team matching ledger entries every morning. An applicant resubmitting
-                the same drawings for the fourth time.
-              </p>
-              <p>
-                We build the system that takes that job on — sometimes an AI agent, sometimes a
-                mobile app that works without a signal, sometimes a vision model reading a live
-                camera feed. What the technology is matters less than whether the work actually gets
-                finished afterwards.
-              </p>
-              <p>
-                From the first scope through go-live, you talk to the people building it — not a
-                handoff chain between sales and delivery.
-              </p>
-            </div>
-          </Rise>
+      <section className="band border-t border-line">
+        <div className="shell grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
+          <div>
+            <SectionHeading align="left" eyebrow="What we do" title="Somebody is doing it by hand." />
+            <Rise delay={0.12} from="soft">
+              <div className="mt-6 flex flex-col gap-5 text-md text-muted">
+                <p>
+                  Most of our projects start the same way: somebody is doing something by hand,
+                  repeatedly, and the cost of that is no longer invisible. A field officer grading
+                  seed by eye. A team matching ledger entries every morning. An applicant
+                  resubmitting the same drawings for the fourth time.
+                </p>
+                <p>
+                  We build the system that takes that job on — sometimes an AI agent, sometimes a
+                  mobile app that works without a signal, sometimes a vision model reading a live
+                  camera feed. What the technology is matters less than whether the work actually
+                  gets finished afterwards.
+                </p>
+                <p>
+                  From the first scope through go-live, you talk to the people building it — not a
+                  handoff chain between sales and delivery.
+                </p>
+              </div>
+            </Rise>
+          </div>
 
-          <Rise delay={0.1} from="right">
-            <div className="rounded-lg border border-line bg-soft p-8 md:p-10">
-              <h2 className="text-2xs font-semibold uppercase tracking-[0.18em] text-muted">
-                Sectors we have shipped in
+          <Rise delay={0.1} from="soft" className="lg:pt-10">
+            <div className="card p-7 md:p-8">
+              <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+                Sectors we work in
               </h2>
-              <ul className="mt-6 flex flex-col gap-3">
+              <ul className="mt-5 flex flex-col">
                 {sectors.map((s) => (
-                  <li key={s} className="flex items-center gap-3 text-base md:text-md">
-                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
-                    {s}
+                  <li key={s.name} className="flex items-center gap-3.5 border-b border-line py-3.5 text-base font-medium last:border-b-0">
+                    <s.icon size={20} strokeWidth={1.7} className="shrink-0 text-second" aria-hidden="true" />
+                    {s.name}
                   </li>
                 ))}
               </ul>
-              <div className="rule my-8" />
               <Link
                 href="/work"
-                className="inline-flex min-h-11 items-center gap-1.5 text-base font-medium text-accent-text hover:underline"
+                className="group mt-5 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-accent-text"
               >
                 See the case studies
-                <ArrowRight size={15} strokeWidth={2.2} aria-hidden="true" />
+                <ArrowRight size={15} strokeWidth={2.2} aria-hidden="true" className="arrow-nudge" />
               </Link>
             </div>
           </Rise>
         </div>
       </section>
 
-      {/* principles */}
-      <section className="band border-t border-line bg-soft">
-        <div className="shell">
-          <Rise className="max-w-2xl">
-            <h2 className="text-4xl">How we work</h2>
-          </Rise>
-          <div className="mt-10 grid gap-4 md:mt-12 md:grid-cols-2 md:gap-5">
-            {principles.map((p, i) => (
-              <Rise
-                key={p.title}
-                delay={(i % 2) * 0.08 + Math.floor(i / 2) * 0.05}
-                from={i % 2 === 0 ? "left" : "right"}
-                className="h-full"
-              >
-                <div className="flex h-full flex-col rounded-xl border border-line bg-surface p-7 shadow-[var(--shadow-sm)] md:p-8">
-                  <h3 className="text-xl">{p.title}</h3>
-                  <p className="mt-3 text-base leading-relaxed text-muted">{p.body}</p>
-                </div>
-              </Rise>
-            ))}
-          </div>
-        </div>
-      </section>
+      <WhyUs withAboutLink={false} />
 
       {/* services + contact */}
-      <section className="band">
-        <div className="shell grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
-          <Rise>
-            <h2 className="text-3xl">What we offer</h2>
-            <ul className="mt-7 grid gap-3 sm:grid-cols-2">
-              {services.map((s) => (
-                <li key={s.slug}>
+      <section className="band border-t border-line">
+        <div className="shell grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
+          <div>
+            <SectionHeading align="left" eyebrow="Services" title="What we offer" />
+            <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+              {services.map((s, i) => (
+                <Rise as="li" key={s.slug} delay={(i % 2) * 0.06} from="soft" className="h-full">
                   <Link
                     href={`/services/${s.slug}`}
-                    className="press card-lift flex h-full items-start gap-3 rounded-xl border border-line bg-surface p-5 shadow-[var(--shadow-xs)] transition-colors hover:bg-soft"
+                    className="card card-lift flex h-full items-center gap-4 p-5"
                   >
-                    <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-accent-soft text-accent-text">
-                      <s.icon size={15} strokeWidth={1.9} aria-hidden="true" />
-                    </span>
-                    <span className="text-base font-medium">{s.name}</span>
+                    <CardIcon icon={s.icon} />
+                    <span className="text-base font-semibold">{s.name}</span>
                   </Link>
-                </li>
+                </Rise>
               ))}
             </ul>
-          </Rise>
+          </div>
 
-          <Rise delay={0.08}>
-            <h2 className="text-3xl">Where to find us</h2>
-            <ul className="mt-7 flex flex-col gap-4 text-base md:text-md">
-              <li>
-                <CompanyEmailLink className="flex min-h-11 items-center gap-3 transition-colors hover:text-accent-text">
-                  <Mail size={16} className="shrink-0 text-accent" aria-hidden="true" />
-                  <span className="break-all">{site.email}</span>
-                </CompanyEmailLink>
-              </li>
-              <li>
-                <a
-                  href={`tel:${site.phoneHref}`}
-                  className="flex min-h-11 items-center gap-3 transition-colors hover:text-accent-text"
-                >
-                  <Phone size={16} className="shrink-0 text-accent" aria-hidden="true" />
-                  {site.phone}
-                </a>
-              </li>
-              <li className="flex items-start gap-3 text-muted">
-                <MapPin size={16} className="mt-1 shrink-0 text-accent" aria-hidden="true" />
-                <span>
-                  {site.address.line1}
-                  <br />
-                  {site.address.line2}
-                  <br />
-                  {site.address.country}
-                </span>
-              </li>
-            </ul>
-            <div className="mt-9">
-              <BookCallCta arrow>
-                Book a call
-              </BookCallCta>
-            </div>
-          </Rise>
+          <div>
+            <SectionHeading align="left" eyebrow="Contact" title="Where to find us" />
+            <Rise delay={0.1} from="soft">
+              <ul className="mt-8 flex flex-col gap-3">
+                <li>
+                  <CompanyEmailLink className={contactRow}>
+                    <span className={contactIcon}>
+                      <Mail size={16} aria-hidden="true" />
+                    </span>
+                    <span className="break-all">{site.email}</span>
+                  </CompanyEmailLink>
+                </li>
+                <li>
+                  <a href={`tel:${site.phoneHref}`} className={contactRow}>
+                    <span className={contactIcon}>
+                      <Phone size={16} aria-hidden="true" />
+                    </span>
+                    {site.phone}
+                  </a>
+                </li>
+                <li className="flex items-start gap-3 text-base text-muted">
+                  <span className={contactIcon}>
+                    <MapPin size={16} aria-hidden="true" />
+                  </span>
+                  <span className="pt-1.5">
+                    {site.address.line1}, {site.address.line2}
+                    <br />
+                    {site.address.country}
+                  </span>
+                </li>
+              </ul>
+              <div className="mt-9">
+                <BookCallCta arrow>Book a call</BookCallCta>
+              </div>
+            </Rise>
+          </div>
         </div>
       </section>
     </>

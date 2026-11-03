@@ -1,20 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Outfit } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { MobileCtaBar } from "@/components/mobile-cta";
 import { Providers } from "@/components/providers";
 import { ScrollProgress } from "@/components/scroll-progress";
-import { CursorGlow } from "@/components/cursor-glow";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { MicrosoftClarity } from "@/components/analytics/microsoft-clarity";
 import { site, SITE } from "@/lib/site";
 
-const outfit = Outfit({
+const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-outfit",
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -35,17 +34,15 @@ export const metadata: Metadata = {
     "generative engine optimization",
     "GARV AI LABS",
   ],
+  // No title/description/url here: Next fills og:title and og:description from
+  // each page's own metadata. No canonical either — each page sets its own;
+  // one here made every page claim to be the homepage.
   openGraph: {
-    title: "GARV AI LABS — Intelligence that finishes the work",
-    description:
-      "AI agents, software, mobile apps, websites, SEO and GEO — built and run from Noida, Uttar Pradesh.",
-    url: SITE,
     siteName: "GARV AI LABS",
     locale: "en_IN",
     type: "website",
   },
   twitter: { card: "summary_large_image" },
-  alternates: { canonical: "/" },
   robots: { index: true, follow: true },
   icons: {
     icon: [
@@ -88,7 +85,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-IN" className={outfit.variable}>
+    <html lang="en-IN" className={inter.variable}>
       <body className="min-h-dvh">
         <script
           type="application/ld+json"
@@ -104,7 +101,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <GoogleAnalytics />
           <MicrosoftClarity />
           <ScrollProgress />
-          <CursorGlow />
           <Nav />
           <main id="main">{children}</main>
           <Footer />

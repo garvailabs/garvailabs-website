@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "How GARV AI LABS collects, uses and protects information when you visit our website, book a call, or send an enquiry.",
+  alternates: { canonical: "/privacy" },
 };
 
 const sections = [

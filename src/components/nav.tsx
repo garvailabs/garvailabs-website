@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useReducedMotionSafe } from "@/lib/use-reduced-motion";
 import { Menu, X } from "lucide-react";
 import { Wordmark } from "@/components/wordmark";
 import { nav } from "@/lib/site";
@@ -22,7 +23,7 @@ export function Nav() {
   const pathname = usePathname();
   const toggleRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotionSafe();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 6);
@@ -37,9 +38,20 @@ export function Nav() {
     if (!open) return;
     const panel = panelRef.current;
     const opener = toggleRef.current;
-    const items = () => Array.from(panel?.querySelectorAll<HTMLElement>("a[href], button") ?? []);
+    // The close (X) toggle lives outside the panel; it must be in the Tab loop
+    // or keyboard users can only close the menu with Escape.
+    const items = () => [
+      ...(opener ? [opener] : []),
+      ...Array.from(panel?.querySelectorAll<HTMLElement>("a[href], button") ?? []),
+    ];
 
-    items()[0]?.focus();
+    items()[1]?.focus();
+
+    // Rotating a tablet past the lg breakpoint hides the menu and its toggle
+    // (lg:hidden) — close it, or the body stays scroll-locked with no way out.
+    const wide = window.matchMedia("(min-width: 1024px)");
+    const onWide = () => wide.matches && setOpen(false);
+    wide.addEventListener("change", onWide);
 
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") return setOpen(false);
@@ -62,24 +74,22 @@ export function Nav() {
     document.body.style.overflow = "hidden";
     return () => {
       window.removeEventListener("keydown", onKey);
+      wide.removeEventListener("change", onWide);
       document.body.style.overflow = prev;
       opener?.focus();
     };
   }, [open]);
 
   return (
-    <motion.header
+    // Plain header, no entrance animation: a framer `initial` would server-render
+    // it at opacity 0, hiding the navigation whenever JS is slow or blocked.
+    <header
       data-nav-open={open ? "true" : "false"}
-      initial={reduce ? false : { y: -16, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.45, ease: easeOut, delay: 0.05 }}
-      className={`fixed inset-x-0 top-0 z-50 pt-[env(safe-area-inset-top)] transition-[background-color,border-color,box-shadow] duration-300 ${
-        scrolled || open
-          ? "border-b border-line bg-bg/75 shadow-[var(--shadow-sm)] backdrop-blur-2xl"
-          : "border-b border-transparent"
+      className={`fixed inset-x-0 top-0 z-50 border-b border-line bg-bg/90 pt-[env(safe-area-inset-top)] backdrop-blur-xl transition-shadow duration-300 ${
+        scrolled || open ? "shadow-[var(--shadow-xs)]" : ""
       }`}
     >
-      <nav className="shell flex h-16 items-center justify-between lg:h-[76px]" aria-label="Primary">
+      <nav className="shell flex h-16 items-center justify-between lg:h-[72px]" aria-label="Primary">
         <Link href="/" className="flex min-h-11 shrink-0 items-center" aria-label="GARV AI LABS — home">
           <Wordmark />
         </Link>
@@ -90,10 +100,8 @@ export function Nav() {
               key={l.href}
               href={l.href}
               aria-current={isActive(l.href, pathname) ? "page" : undefined}
-              className={`nav-link inline-flex min-h-11 items-center rounded-full px-4 text-base transition-[color,background-color] duration-200 ${
-                isActive(l.href, pathname)
-                  ? "bg-soft/80 text-text"
-                  : "text-muted hover:bg-soft/60 hover:text-text"
+              className={`nav-link inline-flex min-h-11 items-center rounded-full px-4 text-[15px] font-medium transition-colors duration-200 ${
+                isActive(l.href, pathname) ? "text-text" : "text-muted hover:text-text"
               }`}
             >
               {l.label}
@@ -188,6 +196,6 @@ export function Nav() {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </header>
   );
 }

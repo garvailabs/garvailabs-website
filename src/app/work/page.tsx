@@ -1,83 +1,51 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { Rise } from "@/components/ui/rise";
 import { Cta } from "@/components/ui/button";
+import { WorkGrid } from "@/components/selected-work";
 import { caseStudies } from "@/lib/work";
 
 export const metadata: Metadata = {
   title: "Work",
   description:
     "Case studies from GARV AI LABS across agriculture, healthtech, government and maritime — the problem, what we built, and the measured result.",
+  alternates: { canonical: "/work" },
 };
 
 export default function WorkIndex() {
   return (
     <>
-      <section className="page-top">
+      <section className="page-top pb-14 md:pb-20">
         <div className="shell">
+          <div className="mx-auto max-w-3xl text-center">
           <Rise from="soft">
-            <p className="eyebrow">Work</p>
+            <p className="eyebrow">Case studies</p>
           </Rise>
           <Rise delay={0.07} from="up">
-            <h1 className="mt-5 max-w-[18ch] text-6xl">
+            <h1 className="tight mx-auto mt-4 max-w-[18ch] text-5xl sm:text-6xl">
               Systems running in the field.
             </h1>
           </Rise>
           <Rise delay={0.14} from="soft">
-            <p className="mt-6 max-w-[56ch] text-md leading-[1.65] text-muted">
-              Five projects across agriculture, healthtech, government and maritime. Each one names
-              the problem it started from, what we built, and what changed afterwards.
+            <p className="mx-auto mt-6 max-w-[58ch] text-lg text-muted">
+              {caseStudies.length} projects across agriculture, healthtech, government and maritime.
+              Each one names the problem it started from, what we built, and what changed afterwards.
             </p>
           </Rise>
+          </div>
         </div>
       </section>
 
-      <section className="band">
+      <section className="band !pt-0">
         <div className="shell">
-          <div className="flex flex-col gap-5">
-            {caseStudies.map((c, i) => (
-              <Rise as="article" key={c.slug} delay={i * 0.08} from={i % 2 === 0 ? "left" : "right"}>
-                <Link
-                  href={`/work/${c.slug}`}
-                  className="press card-lift group grid gap-7 rounded-xl border border-line bg-surface p-7 shadow-[var(--shadow-sm)] transition-[border-color,transform,opacity,box-shadow] duration-200 md:p-10 lg:grid-cols-[1.4fr_0.6fr] lg:items-center lg:gap-12"
-                >
-                  <div>
-                    <p className="eyebrow">{c.sector}</p>
-                    <h2 className="mt-4 max-w-[24ch] text-3xl leading-[1.15]">
-                      {c.title}
-                    </h2>
-                    <p className="mt-4 max-w-[62ch] text-base leading-relaxed text-muted md:text-md">
-                      {c.summary}
-                    </p>
-                    <span className="mt-6 inline-flex items-center gap-1.5 text-base font-medium text-accent-text">
-                      Read the case study
-                      <ArrowRight
-                        size={15}
-                        strokeWidth={2.2}
-                        aria-hidden="true"
-                        className="arrow-nudge"
-                      />
-                    </span>
-                  </div>
+          <h2 className="sr-only">All case studies</h2>
+          <WorkGrid items={caseStudies} columns={2} />
 
-                  <div className="rounded-card border border-line bg-soft/80 p-6 lg:p-7">
-                    <p className="num text-5xl text-accent-text">
-                      {c.headline.value}
-                    </p>
-                    <p className="mt-3 text-base leading-snug text-muted">{c.headline.label}</p>
-                  </div>
-                </Link>
-              </Rise>
-            ))}
-          </div>
-
-          <Rise delay={0.18} from="soft">
-            <div className="mt-12 flex flex-col items-start gap-5 rounded-xl border border-line bg-soft p-8 shadow-[var(--shadow-sm)] md:flex-row md:items-center md:justify-between md:p-10">
-              <p className="max-w-[46ch] text-md leading-relaxed">
+          <Rise delay={0.12} from="soft">
+            <div className="card mx-auto mt-16 flex max-w-3xl flex-col items-center gap-6 p-10 text-center">
+              <p className="tight text-2xl font-bold">
                 Every one of these started as a single workflow somebody was doing by hand.
               </p>
-              <Cta href="/contact" arrow className="w-full shrink-0 sm:w-auto">
+              <Cta href="/contact" arrow>
                 Start with yours
               </Cta>
             </div>

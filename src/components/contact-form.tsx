@@ -56,16 +56,16 @@ function compose(f: Fields): MailDraft {
 }
 
 const fieldClass =
-  "h-14 w-full rounded-card border px-4 text-base placeholder:text-muted/55 transition-[border-color,box-shadow,background-color] duration-200";
+  "h-14 w-full rounded-card border px-4 text-base placeholder:text-muted/80 transition-[border-color,box-shadow,background-color] duration-200";
 
 function fieldVisualClass(hasError: boolean) {
   return hasError
     ? "border-accent bg-accent-soft/30 shadow-[0_0_0_3px_rgba(238,99,82,0.2)] focus:border-accent focus:bg-surface focus:shadow-[0_0_0_3px_rgba(238,99,82,0.28)]"
-    : "border-line bg-soft/50 focus:border-accent focus:bg-surface focus:shadow-[0_0_0_3px_var(--accent-soft)]";
+    : "border-line-input bg-soft/50 focus:border-accent focus:bg-surface focus:shadow-[0_0_0_3px_var(--accent-soft)]";
 }
 
 const textareaClass =
-  "w-full resize-y rounded-card border px-4 py-3.5 text-base leading-relaxed transition-[border-color,box-shadow,background-color] duration-200";
+  "w-full resize-y rounded-card border px-4 py-3.5 text-base leading-relaxed placeholder:text-muted/80 transition-[border-color,box-shadow,background-color] duration-200";
 
 export function ContactForm() {
   const [fields, setFields] = useState<Fields>({
@@ -82,6 +82,12 @@ export function ContactForm() {
   const [useWebCompose, setUseWebCompose] = useState(false);
   const summary = useRef<HTMLDivElement>(null);
   const draftRef = useRef<MailDraft | null>(null);
+  // The form is swapped for the confirmation on submit; move focus there so
+  // keyboard and screen-reader users are not dropped back at the top.
+  const doneHeading = useRef<HTMLHeadingElement>(null);
+  useEffect(() => {
+    if (done) doneHeading.current?.focus();
+  }, [done]);
 
   useEffect(() => {
     setUseWebCompose(prefersWebCompose());
@@ -129,7 +135,9 @@ export function ContactForm() {
         <span className="flex h-11 w-11 items-center justify-center rounded-full bg-accent-soft text-accent-text">
           <MailOpen size={19} aria-hidden="true" />
         </span>
-        <h2 className="mt-6 text-3xl">Almost sent, {fields.name.split(" ")[0]}.</h2>
+        <h2 ref={doneHeading} tabIndex={-1} className="mt-6 text-3xl focus:outline-none">
+          Almost sent, {fields.name.trim().split(/\s+/)[0]}.
+        </h2>
         <p className="mt-4 max-w-[52ch] text-base leading-relaxed text-muted">
           {draft.tooLong ? (
             <>

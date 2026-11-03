@@ -7,6 +7,8 @@
 export type CaseStudy = {
   slug: string;
   title: string;
+  /** Two or three words for compact lists like the footer, where sectors repeat. */
+  shortName: string;
   sector: string;
   summary: string;
   headline: { value: string; label: string };
@@ -14,16 +16,22 @@ export type CaseStudy = {
   solution: string[];
   tech: string[];
   results: { value: string; label: string }[];
+  /**
+   * A real screenshot or field photo (path under /public). When set it
+   * replaces the drawn illustration on every card and on the case page.
+   */
+  image?: { src: string; alt: string };
 };
 
 export const caseStudies: CaseStudy[] = [
   {
     slug: "seed-grading-ai",
     title: "AI-powered seed segmentation and classification",
+    shortName: "Seed grading",
     sector: "Agriculture · FPO procurement centres",
     summary:
       "A mobile grading model that works offline in rural procurement centres, replacing manual seed inspection with consistent image-based classification.",
-    headline: { value: "60%", label: "reduction in grading time" },
+    headline: { value: "60%+", label: "reduction in grading time" },
     problem: [
       "Manual seed inspection was slow and prone to human error, producing inconsistent classifications between centres.",
       "There was no digital record of grading decisions, so nothing could be audited afterwards.",
@@ -45,6 +53,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "peanut-procurement",
     title: "Smart peanut procurement with AI quality analysis",
+    shortName: "Peanut procurement",
     sector: "Agriculture · Farmer networks and FPOs",
     summary:
       "A procurement app that standardises quality checks in the field and puts live market rates in the hands of the officer doing the deal.",
@@ -69,6 +78,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "dental-ai-assistant",
     title: "Intelligent assistance for dentists",
+    shortName: "Dental AI assistant",
     sector: "HealthTech · Dental EHR platform",
     summary:
       "A RAG-based assistant built into an existing dental EHR, trained on each practitioner's own history plus collective platform insight.",
@@ -91,10 +101,11 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "permitting-object-recognition",
     title: "Object recognition for government permitting workflows",
+    shortName: "Permit review",
     sector: "Government · US state permitting departments",
     summary:
       "Neural networks and knowledge graphs that read construction drawings, apply 3D regulatory rules, and catch compliance issues before submission.",
-    headline: { value: "80%", label: "fewer repetitive resubmissions" },
+    headline: { value: "80%+", label: "fewer repetitive resubmissions" },
     problem: [
       "Identifying and validating objects inside construction drawings was slow and manual.",
       "Complex 3D regulatory rules had to be applied to flat PDF submissions.",
@@ -115,6 +126,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "maritime-cctv-insights",
     title: "Real-time CCTV insights for ship management",
+    shortName: "Ship CCTV insights",
     sector: "Maritime · ERP provider serving thousands of ships",
     summary:
       "A streaming vision model that turns onboard CCTV into live operational alerts and a compliance audit trail.",

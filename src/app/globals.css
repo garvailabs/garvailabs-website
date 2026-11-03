@@ -4,37 +4,51 @@
    GarvAILabs — light system. Every value lives here.
    ============================================================ */
 :root {
-  --bg: #faf9f7;
-  --soft: #f4f2ef;
+  /* Warm neutrals — ivory page, sand bands, white cards. */
+  --bg: #fcfbf8;
+  --soft: #f5f2ec;
   --surface: #ffffff;
-  --text: #121110;
-  --muted: #625c58;
-  --border: rgba(18, 17, 16, 0.08);
-  --border-strong: rgba(18, 17, 16, 0.14);
+  --text: #1c1917;
+  --muted: #57534e;
+  --border: #e8e2d8;
+  --border-strong: #d9d1c4;
+  /* Form field outlines must reach 3:1 against white (WCAG 1.4.11); the
+     decorative --border hairlines do not need to. ~3.3:1. */
+  --border-input: #958c7f;
+
+  /* Second colour: deep teal, for icons and quiet tints. Orange stays the
+     action colour (buttons, kickers, key numbers). ~4.9:1 on --soft. */
+  --second: #0f766e;
+  --second-soft: rgba(15, 118, 110, 0.09);
   /* Brand coral-orange, taken from the live garvailabs.com logo and CSS. */
   --accent: #ee6352;
   --accent-hover: #d85545;
 
   /* #EE6352 is a FILL colour. On the page ground it measures ~3.05:1, so it
-     cannot carry body text. This darker shade (~4.7:1) is what type uses. */
-  --accent-text: #c24632;
+     cannot carry body text. This darker shade (~4.7:1 on --soft) is what type uses. */
+  --accent-text: #b9412e;
   --accent-soft: rgba(238, 99, 82, 0.11);
 
   /* White on the brand orange is only ~3.2:1 — near-black is ~5.9:1, so text
      on an orange fill is dark, not white. */
   --on-accent: #2a0f0a;
 
-  --dark: #141110;
-  --dark-soft: #201b19;
-  --dark-text: #f6f4f2;
-  --dark-muted: #a09793;
+  /* Deep teal-green — the footer only. Dark enough that raw --accent links
+     on it still clear 4.5:1 (~4.7:1). */
+  --dark: #0c2925;
+  --dark-soft: #143a34;
+  --dark-text: #f5f2ec;
+  --dark-muted: #a9bdb7;
   --dark-border: rgba(255, 255, 255, 0.1);
+  --dark-border-strong: rgba(255, 255, 255, 0.18);
+  --dark-raise: #11332e;
 
-  /* Soft elevation — Behance-inspired depth without a new palette */
-  --shadow-xs: 0 1px 2px rgba(18, 17, 16, 0.04);
-  --shadow-sm: 0 4px 18px -8px rgba(18, 17, 16, 0.1), 0 1px 3px rgba(18, 17, 16, 0.04);
-  --shadow-md: 0 16px 40px -20px rgba(18, 17, 16, 0.18), 0 4px 12px -6px rgba(18, 17, 16, 0.06);
-  --shadow-lg: 0 32px 64px -28px rgba(18, 17, 16, 0.28), 0 12px 24px -16px rgba(18, 17, 16, 0.08);
+  /* Warm-tinted elevation, so shadows read as part of the ivory ground. */
+  --shadow-xs: 0 1px 2px rgba(41, 32, 24, 0.05);
+  /* Card resting shadow: a soft drop under a 1px border. */
+  --shadow-sm: 0 8px 24px -14px rgba(41, 32, 24, 0.18), 0 1px 2px rgba(41, 32, 24, 0.05);
+  --shadow-md: 0 18px 40px -20px rgba(41, 32, 24, 0.24), 0 2px 6px rgba(41, 32, 24, 0.06);
+  --shadow-lg: 0 32px 64px -28px rgba(41, 32, 24, 0.3), 0 12px 24px -16px rgba(41, 32, 24, 0.08);
   --shadow-accent: 0 12px 28px -10px rgba(238, 99, 82, 0.42);
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -48,16 +62,21 @@
   --color-muted: var(--muted);
   --color-line: var(--border);
   --color-line-strong: var(--border-strong);
+  --color-line-input: var(--border-input);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
   --color-accent-text: var(--accent-text);
   --color-accent-soft: var(--accent-soft);
   --color-on-accent: var(--on-accent);
+  --color-second: var(--second);
+  --color-second-soft: var(--second-soft);
   --color-dark: var(--dark);
   --color-dark-soft: var(--dark-soft);
   --color-dark-text: var(--dark-text);
   --color-dark-muted: var(--dark-muted);
   --color-dark-line: var(--dark-border);
+  --color-dark-line-strong: var(--dark-border-strong);
+  --color-dark-raise: var(--dark-raise);
 
   /* One fluid type scale.
      Small sizes stay fixed — body copy should not shrink on a phone or
@@ -77,6 +96,8 @@
   --text-4xl: clamp(27px, 21.33px + 1.57vw, 44px);
   --text-5xl: clamp(32px, 24px + 2.22vw, 56px);
   --text-6xl: clamp(34px, 21.33px + 3.52vw, 72px);
+  /* Display — the homepage hero headline only. */
+  --text-7xl: clamp(40px, 26px + 3.9vw, 78px);
 
   /* CRITICAL: Tailwind defaults these to 1, which clips Syne/Outfit descenders
      (g, y, p, q) flush to the baseline. text-* utilities beat element rules,
@@ -93,12 +114,14 @@
   --text-4xl--line-height: 1.3;
   --text-5xl--line-height: 1.28;
   --text-6xl--line-height: 1.28;
+  --text-7xl--line-height: 1.08;
 
   --radius-card: 16px;
   --radius-lg: 20px;
   --radius-xl: 28px;
 
-  --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
 }
 
 @layer base {
@@ -113,7 +136,7 @@
   body {
     background-color: var(--bg);
     color: var(--text);
-    font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
     font-size: 16.5px;
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
@@ -125,12 +148,15 @@
   /* Kill Tailwind preflight’s line-height:1 on headings, and never let
      descenders get painted over by the next sibling. */
   h1, h2, h3, h4, h5, h6, .font-display {
-    /* Outfit — Syne’s g/y/p read as clipped at display sizes on Windows.
-       Same loaded face as body; clear, full descenders. */
-    font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    line-height: 1.35 !important;
+    /* Inter, same face as body. (Syne was dropped earlier: its g/y/p clip at
+       display sizes on Windows.) */
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    font-weight: 700;
+    /* Set per heading with .tight / .display. The !important here sits in the
+       base layer, which beats any utility-layer !important, so the variable is
+       the only way to change it. */
+    letter-spacing: var(--heading-tracking, -0.015em);
+    line-height: var(--heading-lh, 1.3) !important;
     overflow: visible !important;
     text-wrap: balance;
     margin: 0;
@@ -166,7 +192,7 @@
 @layer utilities {
   .shell {
     width: 100%;
-    max-width: 1180px;
+    max-width: 1120px;
     margin-inline: auto;
     padding-left: max(20px, env(safe-area-inset-left), clamp(20px, 1.2rem + 1.6vw, 44px));
     padding-right: max(20px, env(safe-area-inset-right), clamp(20px, 1.2rem + 1.6vw, 44px));
@@ -179,13 +205,13 @@
     }
   }
 
-  @media (min-width: 1600px) { .shell { max-width: 1280px; } }
+  @media (min-width: 1600px) { .shell { max-width: 1200px; } }
 
-  .band { padding-block: clamp(64px, 3.5rem + 5vw, 152px); }
+  .band { padding-block: clamp(64px, 3rem + 4vw, 120px); }
   .page-top {
-    padding-top: calc(clamp(104px, 5.5rem + 5vw, 176px) + env(safe-area-inset-top));
+    padding-top: calc(clamp(112px, 5.5rem + 4vw, 168px) + env(safe-area-inset-top));
   }
-  .band-b { padding-bottom: clamp(64px, 3.5rem + 5vw, 152px); }
+  .band-b { padding-bottom: clamp(64px, 3rem + 4vw, 120px); }
 
   /* Short landscape phones — keep sections from feeling sparse */
   @media (max-height: 480px) and (orientation: landscape) {
@@ -194,16 +220,52 @@
     .band-b { padding-bottom: clamp(36px, 2rem + 2vw, 64px); }
   }
 
+  /* Section kicker above a heading: small, widely tracked, brand text shade. */
   .eyebrow {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--accent-text);
+  }
+
+  /* Data readouts inside the hero demo (system mono, no extra font load). */
+  .label-mono {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.5;
+  }
+
+  /* Heading rhythm. Large headings sit tighter than the 1.3 default. */
+  .tight {
+    --heading-lh: 1.18;
+    --heading-tracking: -0.022em;
+  }
+  .display {
+    --heading-lh: 1.08;
+    --heading-tracking: -0.035em;
+  }
+
+  /* The one card style: white fill, hairline warm border, soft drop shadow.
+     White lifts off both the ivory page and the sand bands. */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+  }
+  /* Featured variant — a faint teal wash from the top-left corner. */
+  .card-tint {
+    background:
+      linear-gradient(150deg, rgba(15, 118, 110, 0.08), rgba(15, 118, 110, 0.015) 45%, transparent 70%),
+      var(--surface);
   }
 
   .num {
-    font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.03em;
     font-weight: 600;
@@ -214,99 +276,6 @@
   .rule {
     height: 1px;
     background: var(--border);
-  }
-
-  /* Premium surface primitives */
-  .panel {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .panel-soft {
-    background: var(--soft);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-  }
-
-  .glass {
-    background: color-mix(in srgb, var(--bg) 78%, transparent);
-    backdrop-filter: blur(18px) saturate(1.15);
-    -webkit-backdrop-filter: blur(18px) saturate(1.15);
-    border: 1px solid var(--border);
-  }
-
-  .metric-chip {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 0.35rem;
-    border-radius: 999px;
-    background: var(--accent-soft);
-    color: var(--accent-text);
-    padding: 0.35rem 0.85rem;
-    font-weight: 600;
-  }
-
-  /* Atmosphere */
-  .noise-overlay {
-    opacity: 0.035;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: 180px 180px;
-  }
-
-  .mesh-soft {
-    background:
-      radial-gradient(ellipse 70% 50% at 0% 0%, var(--accent-soft), transparent 55%),
-      radial-gradient(ellipse 50% 40% at 100% 100%, rgba(18, 17, 16, 0.03), transparent 50%),
-      var(--soft);
-  }
-
-  .spotlight-card {
-    --spot-x: 50%;
-    --spot-y: 50%;
-    position: relative;
-    isolation: isolate;
-  }
-  @media (hover: hover) and (pointer: fine) {
-    .spotlight-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      border-radius: inherit;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 280ms var(--ease);
-      background: radial-gradient(
-        420px circle at var(--spot-x) var(--spot-y),
-        rgba(238, 99, 82, 0.12),
-        transparent 55%
-      );
-    }
-    .spotlight-card:hover::before {
-      opacity: 1;
-    }
-    .spotlight-card > * {
-      position: relative;
-      z-index: 2;
-    }
-  }
-
-  .marquee-track {
-    animation: marquee 42s linear infinite;
-  }
-  @keyframes marquee {
-    from { transform: translate3d(0, 0, 0); }
-    to { transform: translate3d(-50%, 0, 0); }
-  }
-
-  .float-slow {
-    animation: float-slow 7s ease-in-out infinite alternate;
-  }
-  @keyframes float-slow {
-    from { transform: translate3d(0, 0, 0); }
-    to { transform: translate3d(0, -8px, 0); }
   }
 
   /* Touch press — cards and CTAs */
@@ -333,7 +302,7 @@
         background-color 220ms var(--ease);
     }
     .card-lift:hover {
-      transform: translateY(-4px) scale(1.012);
+      transform: translateY(-3px);
       box-shadow: var(--shadow-md);
       border-color: color-mix(in srgb, var(--border-strong) 75%, var(--accent) 25%);
     }
@@ -348,16 +317,81 @@
     }
   }
 
-  /* Soft link underline grow */
-  .link-soft {
-    background-image: linear-gradient(currentColor, currentColor);
-    background-position: 0 100%;
-    background-repeat: no-repeat;
-    background-size: 0 1.5px;
-    transition: background-size 220ms var(--ease), color 200ms var(--ease);
+  /* Hero entrance — pure CSS, so the headline renders even if JS never runs.
+     The global reduced-motion rule collapses it to an instant appear. */
+  .hero-in {
+    animation: hero-in 700ms var(--ease) both;
+    animation-delay: var(--d, 0s);
   }
-  .link-soft:hover {
-    background-size: 100% 1.5px;
+  @keyframes hero-in {
+    from { opacity: 0; transform: translate3d(0, 14px, 0); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* Signature mark: a dot-matrix field, from the dotted "g" in the logo. */
+  .dot-field {
+    background-image: radial-gradient(rgba(15, 118, 110, 0.32) 1.3px, transparent 1.6px);
+    background-size: 16px 16px;
+    mask-image: radial-gradient(ellipse 70% 70% at 70% 30%, #000 35%, transparent 75%);
+  }
+
+  /* Hero underline draws itself in once; without JS or with reduced motion it is simply there. */
+  .hero-underline path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: underline-draw 900ms var(--ease) 650ms forwards;
+  }
+  @keyframes underline-draw {
+    to { stroke-dashoffset: 0; }
+  }
+
+  /* Footer links: an orange dash slides in and the label nudges right. */
+  .footer-link {
+    position: relative;
+    transition:
+      color 200ms var(--ease),
+      transform 220ms var(--ease);
+  }
+  .footer-link::before {
+    content: "";
+    position: absolute;
+    left: -14px;
+    top: 50%;
+    width: 8px;
+    height: 1.5px;
+    background: var(--accent);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition:
+      opacity 200ms var(--ease),
+      transform 220ms var(--ease);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .footer-link:hover {
+      transform: translateX(12px);
+    }
+    .footer-link:hover::before {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Footer signature: the company name, full-bleed, fading out downwards and
+     cropped by the bottom edge. Sized so all 12 characters fit any width. */
+  .footer-mark {
+    margin: 0;
+    margin-bottom: -0.2em;
+    font-size: clamp(48px, 12.4vw, 240px);
+    font-weight: 700;
+    letter-spacing: -0.055em;
+    line-height: 0.95 !important;
+    text-align: center;
+    white-space: nowrap;
+    user-select: none;
+    background: linear-gradient(180deg, rgba(238, 99, 82, 0.55) 0%, rgba(238, 99, 82, 0.12) 55%, rgba(238, 99, 82, 0) 92%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
   /* Nav link underline draw */
@@ -389,61 +423,6 @@
     transform: translateX(3px);
   }
 
-  /* Icon chip micro-scale on card hover */
-  .icon-chip {
-    transition: transform 280ms var(--ease);
-  }
-  .group:hover .icon-chip {
-    transform: scale(1.06);
-  }
-
-  /* Ambient hero wash drift */
-  .hero-wash {
-    animation: wash-drift 14s ease-in-out infinite alternate;
-  }
-  @keyframes wash-drift {
-    from { transform: translate3d(0, 0, 0) scale(1); opacity: 1; }
-    to { transform: translate3d(2%, 1.5%, 0) scale(1.04); opacity: 0.85; }
-  }
-
-  /* Product mock live indicators */
-  .mock-pulse {
-    animation: mock-pulse 1.8s ease-in-out infinite;
-  }
-  @keyframes mock-pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.45; transform: scale(0.85); }
-  }
-
-  .chart-draw {
-    stroke-dasharray: 420;
-    stroke-dashoffset: 420;
-    animation: chart-draw 1.15s var(--ease) 0.25s forwards;
-  }
-  .chart-fill {
-    opacity: 0;
-    animation: chart-fill 0.7s var(--ease) 0.85s forwards;
-  }
-  @keyframes chart-draw {
-    to { stroke-dashoffset: 0; }
-  }
-  @keyframes chart-fill {
-    to { opacity: 1; }
-  }
-
-  /* Details expand (product preview on mobile) */
-  details.preview-sheet > .preview-body {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 320ms var(--ease);
-  }
-  details.preview-sheet[open] > .preview-body {
-    grid-template-rows: 1fr;
-  }
-  details.preview-sheet > .preview-body > div {
-    overflow: hidden;
-  }
-
   /* Stacked full-width CTAs under ~480px */
   .cta-stack {
     display: flex;
@@ -466,22 +445,6 @@
     }
   }
 
-  /* Horizontal snap rail for mobile carousels.
-     Do NOT set display here — it would override Tailwind md:hidden
-     and duplicate mobile + desktop grids on larger screens. */
-  .snap-rail {
-    gap: 0.875rem;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: max(20px, env(safe-area-inset-left), env(safe-area-inset-right));
-    padding-inline: max(20px, env(safe-area-inset-left), clamp(20px, 1.2rem + 1.6vw, 44px));
-    padding-block: 2px 8px;
-    margin-inline: calc(-1 * max(20px, env(safe-area-inset-left), clamp(20px, 1.2rem + 1.6vw, 44px)));
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  .snap-rail::-webkit-scrollbar { display: none; }
 }
 
 /* Room for sticky mobile CTA when it is showing */
@@ -570,14 +533,4 @@ body:has([data-nav-open="true"]) [data-mobile-cta] {
   }
   .press:active { transform: none; opacity: 1; }
   .card-lift:hover { transform: none; box-shadow: var(--shadow-sm); }
-  .hero-wash,
-  .mock-pulse,
-  .chart-draw,
-  .chart-fill,
-  .marquee-track,
-  .float-slow {
-    animation: none !important;
-  }
-  .chart-draw { stroke-dashoffset: 0 !important; }
-  .chart-fill { opacity: 1 !important; }
 }

@@ -1,11 +1,7 @@
-"use client";
-
-import { useRef, type MouseEvent, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import Link from "next/link";
-import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { CAL_BOOK_PATH } from "@/lib/cal";
-import { springSnappy } from "@/lib/motion";
 
 type Variant = "primary" | "outline" | "dark" | "onDark" | "nav";
 
@@ -38,42 +34,14 @@ export function BookCallButton({
   tabIndex?: number;
   onClick?: () => void;
 }) {
-  const reduce = useReducedMotion();
-  const ref = useRef<HTMLAnchorElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const sx = useSpring(x, springSnappy);
-  const sy = useSpring(y, springSnappy);
-
-  const onMove = (e: MouseEvent) => {
-    if (reduce) return;
-    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
-    const el = ref.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    x.set((e.clientX - (r.left + r.width / 2)) * 0.22);
-    y.set((e.clientY - (r.top + r.height / 2)) * 0.22);
-  };
-
-  const onLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
   const baseClass = `group press inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-7 text-base font-medium transition-[background-color,border-color,color,box-shadow] duration-200 ease-out ${variants[variant]} ${className}`;
 
   return (
-    <motion.div
-      style={reduce ? undefined : { x: sx, y: sy }}
-      className={`inline-flex ${variant === "nav" ? "" : "max-[480px]:w-full"}`}
-    >
+    <div className={`inline-flex ${variant === "nav" ? "" : "max-[480px]:w-full"}`}>
       <Link
-        ref={ref}
         href={CAL_BOOK_PATH}
         tabIndex={tabIndex}
         onClick={onClick}
-        onMouseMove={onMove}
-        onMouseLeave={onLeave}
         className={`${baseClass} ${variant === "nav" ? "min-h-11 px-5" : "w-full"}`}
         aria-label="Book a call with GARV AI LABS — opens the booking calendar on this site"
       >
@@ -82,7 +50,7 @@ export function BookCallButton({
           <ArrowRight size={16} strokeWidth={2.2} aria-hidden="true" className="arrow-nudge" />
         )}
       </Link>
-    </motion.div>
+    </div>
   );
 }
 
