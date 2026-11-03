@@ -1,167 +1,103 @@
-"use client";
-
-import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import { ProductMock } from "@/components/product-mock";
-import { TextReveal } from "@/components/ui/text-reveal";
-import { TiltFrame } from "@/components/ui/tilt-frame";
+import type { CSSProperties } from "react";
+import { Landmark, Ship, Sprout, Stethoscope, type LucideIcon } from "lucide-react";
+import { GradingDemo } from "@/components/grading-demo";
 import { BookCallCta } from "@/components/cal/book-call-button";
-import { duration, easeOut, fadeUpSoft, stagger } from "@/lib/motion";
+import { Cta } from "@/components/ui/button";
 
+/** Stagger for the CSS entrance (.hero-in): visible without JavaScript, unlike a framer `initial`. */
+const delay = (s: number) => ({ "--d": `${s}s` }) as CSSProperties;
+
+/** The four sectors with shipped case studies (see lib/work.ts). */
+const sectors: { icon: LucideIcon; label: string }[] = [
+  { icon: Sprout, label: "Agriculture" },
+  { icon: Stethoscope, label: "HealthTech" },
+  { icon: Landmark, label: "Government" },
+  { icon: Ship, label: "Maritime" },
+];
+
+/**
+ * Split hero: the claim on the left, the proof — a live seed-grading run — on
+ * the right, both in the first screen. The dot-matrix field behind the demo
+ * echoes the dotted "g" in the GARV logo; it is the site's one signature mark.
+ */
 export function Hero() {
-  const reduce = useReducedMotion();
-  const enter = reduce ? undefined : fadeUpSoft;
-  const group = reduce ? undefined : stagger;
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-  const washY = useTransform(scrollYProgress, [0, 1], [0, 90]);
-  const mockY = useTransform(scrollYProgress, [0, 1], [0, 48]);
-  const mockScale = useTransform(scrollYProgress, [0, 1], [1, 0.97]);
-  const orbY = useTransform(scrollYProgress, [0, 1], [0, -36]);
-
   return (
-    <section ref={sectionRef} className="page-top relative overflow-x-clip">
-      <motion.div
+    <section className="page-top relative overflow-x-clip">
+      <div
         aria-hidden="true"
-        className="hero-wash pointer-events-none absolute inset-0 -z-10"
-        style={reduce ? undefined : { y: washY }}
-        initial={reduce ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: duration.slow, ease: easeOut }}
-      >
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 55% at 12% 0%, var(--accent-soft), transparent 55%), radial-gradient(ellipse 55% 40% at 88% 12%, rgba(238,99,82,0.08), transparent 50%), radial-gradient(ellipse 40% 30% at 60% 80%, rgba(18,17,16,0.03), transparent 60%)",
-          }}
-        />
-      </motion.div>
-      <div aria-hidden="true" className="noise-overlay pointer-events-none absolute inset-0 -z-10" />
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[720px]"
+        style={{
+          background:
+            "radial-gradient(ellipse 45% 55% at 15% 0%, rgba(238,99,82,0.08), transparent 70%), radial-gradient(ellipse 45% 60% at 85% 20%, rgba(15,118,110,0.08), transparent 70%)",
+        }}
+      />
 
-      <div className="band-b shell grid items-center gap-10 md:gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-14 xl:gap-20">
-        <motion.div
-          className="min-w-0"
-          variants={group}
-          initial={reduce ? false : "hidden"}
-          animate="show"
-        >
-          <motion.div variants={enter}>
-            <span className="inline-flex max-w-full flex-wrap items-center gap-x-2 gap-y-1 rounded-full border border-line bg-surface/80 px-3.5 py-1.5 text-sm text-muted shadow-[var(--shadow-xs)] backdrop-blur-sm">
-              <Sparkles size={14} className="shrink-0 text-accent-text" aria-hidden="true" />
-              <span className="min-w-0">
-                <span className="sm:hidden">AI · software · apps from Noida</span>
-                <span className="hidden sm:inline">AI agents · software · apps from Noida</span>
-              </span>
-            </span>
-          </motion.div>
+      <div className="band-b shell grid items-center gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-14">
+        <div className="min-w-0">
+          <p className="hero-in label-mono text-second" style={delay(0)}>
+            AI agents · Software · Apps — built in Noida
+          </p>
 
-          <motion.div variants={enter} className="mt-6 overflow-visible md:mt-7">
-            <h1 className="text-5xl !leading-[1.32] sm:text-6xl">
-              <TextReveal
-                as="span"
-                className="inline"
-                text="Intelligence that finishes the work."
-                accentWords={["finishes", "work."]}
-              />
-            </h1>
-          </motion.div>
+          <h1 className="hero-in display mt-6 text-6xl lg:text-7xl" style={delay(0.08)}>
+            Intelligence that{" "}
+            <span className="relative inline-block whitespace-nowrap">
+              finishes
+              {/* Hand-drawn underline — decorative. */}
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 200 14"
+                preserveAspectRatio="none"
+                className="hero-underline absolute -bottom-[0.06em] left-0 h-[0.16em] w-full overflow-visible text-accent"
+              >
+                <path
+                  d="M2 9 C 40 3, 80 3, 118 7 S 178 11, 198 4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="5"
+                  strokeLinecap="round"
+                  pathLength={1}
+                />
+              </svg>
+            </span>{" "}
+            the work.
+          </h1>
 
-          <motion.p
-            variants={enter}
-            className="mt-6 max-w-[50ch] text-md leading-[1.65] text-muted md:mt-7"
-          >
-            <span className="md:hidden">
-              AI agents, software, and apps that take repeat work off your team — built from
-              Noida.
-            </span>
-            <span className="hidden md:inline">
-              GARV AI LABS builds AI-native systems that declutter operations, unite disconnected
-              systems, and turn data into decisive action — from agents and automation to the apps
-              and platforms around them.
-            </span>
-          </motion.p>
+          <p className="hero-in mt-7 max-w-[50ch] text-lg text-muted" style={delay(0.16)}>
+            We build AI-native systems that take a real job off your team — agents, automation, and
+            the apps and platforms around them. Scoped in writing, built to run in the field.
+          </p>
 
-          <motion.div variants={enter} className="cta-stack mt-8 md:mt-10">
-            <BookCallCta className="max-[480px]:w-full">
+          <div className="hero-in cta-stack mt-9" style={delay(0.24)}>
+            <BookCallCta arrow className="max-[480px]:w-full">
               Book a call
             </BookCallCta>
-            <Link
-              href="/work"
-              className="group press inline-flex min-h-12 items-center justify-center gap-1.5 rounded-full px-1 text-base text-muted underline-offset-[6px] transition-colors hover:text-text hover:underline max-[480px]:w-full max-[480px]:border max-[480px]:border-line max-[480px]:bg-surface/70 max-[480px]:px-5 max-[480px]:shadow-[var(--shadow-xs)]"
-            >
+            <Cta href="/work" variant="outline">
               See our work
-              <ArrowRight size={15} strokeWidth={2} aria-hidden="true" className="arrow-nudge" />
-            </Link>
-          </motion.div>
+            </Cta>
+          </div>
 
-          <motion.ul
-            variants={enter}
-            className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted md:mt-9"
-          >
-            {["Measured outcomes", "Written scopes", "Honest no when needed"].map((t) => (
-              <li key={t} className="inline-flex items-center gap-2">
-                <span className="h-1 w-1 rounded-full bg-accent" aria-hidden="true" />
-                {t}
-              </li>
-            ))}
-          </motion.ul>
-        </motion.div>
+          <div className="hero-in mt-10 border-t border-line pt-6" style={delay(0.32)}>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+              Systems running in
+            </p>
+            <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-2">
+              {sectors.map((s) => (
+                <li key={s.label} className="inline-flex items-center gap-2 text-sm font-medium text-text">
+                  <s.icon size={16} strokeWidth={1.8} className="text-second" aria-hidden="true" />
+                  {s.label}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
 
-        <motion.div
-          className="relative min-w-0 max-w-full lg:pl-2"
-          initial={reduce ? false : { opacity: 0, y: 28, scale: 0.975 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.72, ease: easeOut, delay: reduce ? 0 : 0.2 }}
-        >
-          <motion.div className="relative" style={reduce ? undefined : { y: mockY, scale: mockScale }}>
-            <motion.div
-              aria-hidden="true"
-              className="pointer-events-none absolute -right-6 -top-8 hidden h-28 w-28 rounded-full border border-accent/20 md:block"
-              style={reduce ? undefined : { y: orbY }}
-            />
-            <motion.div
-              aria-hidden="true"
-              className="pointer-events-none absolute -bottom-4 -left-4 hidden h-20 w-20 rounded-full bg-accent-soft blur-2xl md:block"
-              style={reduce ? undefined : { y: washY }}
-            />
-
-            <div className="hidden min-w-0 max-w-full md:block">
-              <TiltFrame>
-                <div
-                  className="rounded-xl p-[1px] shadow-[var(--shadow-lg)]"
-                  style={{
-                    background:
-                      "linear-gradient(145deg, rgba(238,99,82,0.32), rgba(18,17,16,0.06) 42%, rgba(18,17,16,0.04))",
-                  }}
-                >
-                  <div className="overflow-hidden rounded-[calc(var(--radius-xl)-1px)] bg-surface">
-                    <ProductMock framed />
-                  </div>
-                </div>
-              </TiltFrame>
-            </div>
-
-            <details className="preview-sheet group glass rounded-xl open:bg-surface md:hidden">
-              <summary className="press flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 px-4 py-3.5 text-base font-medium marker:content-none [&::-webkit-details-marker]:hidden">
-                <span>See product preview</span>
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-soft text-sm text-muted transition-transform duration-200 group-open:rotate-45">
-                  +
-                </span>
-              </summary>
-              <div className="preview-body">
-                <div className="min-w-0 max-w-full border-t border-line p-2.5 sm:p-3">
-                  <ProductMock />
-                </div>
-              </div>
-            </details>
-          </motion.div>
-        </motion.div>
+        <div className="hero-in relative min-w-0" style={delay(0.2)}>
+          {/* Dot-matrix field, offset up-right so it frames the card's corner. */}
+          <div aria-hidden="true" className="dot-field pointer-events-none absolute -top-6 right-0 h-[70%] w-[75%] sm:-right-10 sm:-top-10" />
+          <div className="relative">
+            <GradingDemo />
+          </div>
+        </div>
       </div>
     </section>
   );

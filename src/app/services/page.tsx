@@ -1,79 +1,71 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { Rise } from "@/components/ui/rise";
-import { services } from "@/lib/services";
+import { ServicesGrid } from "@/components/services-grid";
+import { StepsTimeline } from "@/components/steps-timeline";
+import { SectionHeading } from "@/components/ui/section-heading";
 import { BookCallCta } from "@/components/cal/book-call-button";
+import { steps } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Services",
   description:
     "AI automation and agents, software development, mobile apps, websites, SEO and GEO — built and run by GARV AI LABS.",
+  alternates: { canonical: "/services" },
 };
 
 export default function ServicesIndex() {
   return (
     <>
-      <section className="page-top">
+      <section className="page-top pb-14 md:pb-20">
         <div className="shell">
-          <Rise from="soft">
-            <p className="eyebrow">Services</p>
-          </Rise>
-          <Rise delay={0.07} from="up">
-            <h1 className="mt-5 max-w-[18ch] text-6xl">
-              Six ways we take work off your team.
-            </h1>
-          </Rise>
-          <Rise delay={0.14} from="soft">
-            <p className="mt-6 max-w-[56ch] text-md leading-[1.65] text-muted">
-              From AI agents that finish a case end to end, to the software, apps and search
-              visibility that surround them. Every engagement starts with one workflow and a written
-              scope.
-            </p>
-          </Rise>
+          <div className="mx-auto max-w-3xl text-center">
+            <Rise from="soft">
+              <p className="eyebrow">Services</p>
+            </Rise>
+            <Rise delay={0.07} from="up">
+              <h1 className="tight mx-auto mt-4 max-w-[18ch] text-5xl sm:text-6xl">
+                Six ways we take work off your team.
+              </h1>
+            </Rise>
+            <Rise delay={0.14} from="soft">
+              <p className="mx-auto mt-6 max-w-[58ch] text-lg text-muted">
+                From AI agents that finish a case end to end, to the software, apps and search
+                visibility that surround them. Every engagement starts with one workflow and a
+                written scope.
+              </p>
+            </Rise>
+          </div>
         </div>
       </section>
 
-      <section className="band">
+      <section className="band !pt-0">
         <div className="shell">
-          <div className="grid gap-4 md:grid-cols-2 md:gap-5 lg:grid-cols-3">
-            {services.map((s, i) => (
-              <Rise
-                key={s.slug}
-                delay={(i % 3) * 0.075 + Math.floor(i / 3) * 0.04}
-                from={i % 3 === 0 ? "left" : i % 3 === 2 ? "right" : "up"}
-                className="h-full"
-              >
-                <Link
-                  href={`/services/${s.slug}`}
-                  className="press card-lift group flex h-full flex-col rounded-xl border border-line bg-surface p-7 shadow-[var(--shadow-sm)] transition-colors duration-200 md:p-9"
-                >
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-accent-soft text-accent-text transition-transform duration-300 group-hover:scale-105">
-                    <s.icon size={20} strokeWidth={1.9} aria-hidden="true" />
-                  </span>
-                  <h2 className="mt-6 text-xl">{s.name}</h2>
-                  <p className="mt-3 flex-1 text-base leading-relaxed text-muted">{s.short}</p>
-                  <span className="mt-6 inline-flex items-center gap-1.5 text-base font-medium text-accent-text">
-                    Read more
-                    <ArrowRight
-                      size={15}
-                      strokeWidth={2.2}
-                      aria-hidden="true"
-                      className="arrow-nudge"
-                    />
-                  </span>
-                </Link>
-              </Rise>
-            ))}
-          </div>
+          <h2 className="sr-only">All services</h2>
+          <ServicesGrid />
+        </div>
+      </section>
 
-          <Rise delay={0.22} from="soft">
-            <div className="mt-12 flex flex-col items-start gap-5 rounded-xl border border-line bg-soft p-8 shadow-[var(--shadow-sm)] md:flex-row md:items-center md:justify-between md:p-10">
-              <p className="max-w-[46ch] text-md leading-relaxed">
-                Not sure which of these your problem needs? Describe the workflow and we will tell
-                you — including if the answer is none of them.
+      <section className="band border-t border-line bg-soft">
+        <div className="shell">
+          <SectionHeading
+            eyebrow="Whichever you pick"
+            title="Every engagement follows the same arc."
+          />
+          <div className="mt-14">
+            <StepsTimeline steps={steps} />
+          </div>
+        </div>
+      </section>
+
+      <section className="band border-t border-line">
+        <div className="shell">
+          <Rise from="soft">
+            <div className="card mx-auto flex max-w-3xl flex-col items-center gap-6 p-10 text-center">
+              <p className="tight text-2xl font-bold">
+                Not sure which of these your problem needs? Describe the workflow and we will point
+                you to the right one.
               </p>
-              <BookCallCta arrow className="w-full shrink-0 sm:w-auto">
+              <BookCallCta arrow className="w-auto">
                 Book a call
               </BookCallCta>
             </div>

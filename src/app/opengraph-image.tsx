@@ -19,7 +19,7 @@ export default function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#FAF9F7",
+          background: "#FCFBF8",
           padding: "72px 80px",
           fontFamily: "sans-serif",
           position: "relative",
@@ -56,7 +56,7 @@ export default function OpengraphImage() {
           >
             g
           </div>
-          <div style={{ display: "flex", fontSize: 34, fontWeight: 700, color: "#121110" }}>
+          <div style={{ display: "flex", fontSize: 34, fontWeight: 700, color: "#1C1917" }}>
             <span style={{ color: "#EE6352" }}>GARV</span>
             <span>&nbsp;AI LABS</span>
           </div>
@@ -69,7 +69,7 @@ export default function OpengraphImage() {
               fontSize: 21,
               letterSpacing: 3,
               textTransform: "uppercase",
-              color: "#625C58",
+              color: "#57534E",
               marginBottom: 22,
             }}
           >
@@ -83,15 +83,15 @@ export default function OpengraphImage() {
               fontWeight: 700,
               lineHeight: 1.08,
               letterSpacing: -2.5,
-              color: "#121110",
+              color: "#1C1917",
               maxWidth: 940,
             }}
           >
-            Intelligence that&nbsp;<span style={{ color: "#C24632" }}>finishes the work.</span>
+            Intelligence that&nbsp;<span style={{ color: "#B9412E" }}>finishes the work.</span>
           </div>
         </div>
 
-        <div style={{ display: "flex", alignItems: "center", gap: 26, color: "#625C58", fontSize: 22 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 26, color: "#57534E", fontSize: 22 }}>
           <span>Noida, Uttar Pradesh</span>
           <span style={{ color: "rgba(18,17,16,0.22)" }}>|</span>
           <span>garvailabs.com</span>

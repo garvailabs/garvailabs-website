@@ -1,64 +1,58 @@
-"use client";
-
-import { Mail, Phone } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { Rise } from "@/components/ui/rise";
+import { SectionHeading } from "@/components/ui/section-heading";
 import { site } from "@/lib/site";
 import { BookCallCta } from "@/components/cal/book-call-button";
 import { CompanyEmailLink } from "@/components/company-email-link";
-import { easeOut } from "@/lib/motion";
+
+const tile = "rounded-[var(--radius-card)] border border-line bg-soft p-6 shadow-[var(--shadow-xs)]";
+const kicker = "flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-accent-text";
 
 export function FinalCta() {
-  const reduce = useReducedMotion();
-
   return (
-    <section id="final-cta" className="band relative overflow-x-clip bg-dark">
-      <motion.div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        initial={reduce ? false : { opacity: 0.6, scale: 1.05 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.9, ease: easeOut }}
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 60% at 50% 0%, rgba(238,99,82,0.22), transparent 60%)",
-        }}
-      />
-      <div className="shell relative">
-        <Rise from="scale" className="mx-auto max-w-2xl text-center">
-          <div className="mx-auto max-w-xl rounded-xl border border-dark-line bg-dark-soft/50 px-6 py-10 shadow-[var(--shadow-lg)] backdrop-blur-md sm:px-10 sm:py-12">
-            <p className="text-2xs font-semibold uppercase tracking-[0.16em] text-dark-muted">
-              Start here
-            </p>
-            <h2 className="mt-6 text-4xl text-dark-text sm:text-5xl">
-              Bring the process you keep doing by hand.
-            </h2>
-            <p className="mx-auto mt-6 max-w-[48ch] text-md leading-relaxed text-dark-muted">
-              One workflow, a short call, and an honest answer on what it would take to automate it —
-              including when it is not worth automating.
-            </p>
+    <section id="final-cta" className="band border-t border-line">
+      <div className="shell">
+        <SectionHeading
+          eyebrow="Start here"
+          title="Bring the process you keep doing by hand."
+          body="One workflow and a short call. You leave with a clear answer on what it would take to automate it."
+        />
 
-            <div className="cta-stack mx-auto mt-10 max-w-md justify-center sm:max-w-none">
-              <BookCallCta className="max-[480px]:w-full">
-                Book a call
-              </BookCallCta>
-              <CompanyEmailLink className="press inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-dark-line px-7 text-base font-medium text-dark-text transition-colors duration-200 hover:bg-dark-soft max-[480px]:w-full">
-                <Mail size={15} aria-hidden="true" />
-                Email us
+        <Rise delay={0.1} from="soft">
+          <div className="mx-auto mt-12 max-w-4xl rounded-[var(--radius-xl)] border border-line bg-surface p-5 shadow-[var(--shadow-sm)] sm:p-8">
+            <div className="grid gap-4 sm:grid-cols-2">
+              <CompanyEmailLink className={`${tile} group block transition-colors hover:border-line-strong`}>
+                <span className={kicker}>
+                  <Mail size={14} aria-hidden="true" /> Email us
+                </span>
+                <span className="mt-2 block break-all text-lg font-semibold text-text">{site.email}</span>
               </CompanyEmailLink>
+              <a href={`tel:${site.phoneHref}`} className={`${tile} block transition-colors hover:border-line-strong`}>
+                <span className={kicker}>
+                  <Phone size={14} aria-hidden="true" /> Call us
+                </span>
+                <span className="mt-2 block text-lg font-semibold text-text">{site.phone}</span>
+              </a>
+              <div className={tile}>
+                <span className={kicker}>
+                  <MapPin size={14} aria-hidden="true" /> Office
+                </span>
+                <span className="mt-2 block text-base font-semibold text-text">{site.address.line1}</span>
+                <span className="block text-sm text-muted">{site.address.line2}</span>
+              </div>
+              <div className={tile}>
+                <span className={kicker}>
+                  <Clock size={14} aria-hidden="true" /> Hours
+                </span>
+                <span className="mt-2 block text-base font-semibold text-text">{site.hours}</span>
+              </div>
             </div>
 
-            <p className="mt-8 flex flex-col items-center gap-1 text-sm text-dark-muted sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-2 sm:gap-y-1">
-              <span className="inline-flex items-center gap-2">
-                <Phone size={14} aria-hidden="true" />
-                {site.phone}
-              </span>
-              <span className="hidden sm:inline" aria-hidden="true">
-                ·
-              </span>
-              <span>{site.hours}</span>
-            </p>
+            <div className="mt-8 flex justify-center">
+              <BookCallCta arrow className="max-[480px]:w-full">
+                Book a call
+              </BookCallCta>
+            </div>
           </div>
         </Rise>
       </div>

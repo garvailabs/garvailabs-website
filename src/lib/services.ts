@@ -5,7 +5,8 @@ import { Bot, Code2, Smartphone, Globe, Search, Sparkles } from "lucide-react";
  * The six services. 1–4 are grounded in work described on garvailabs.com
  * (AI agents, product engineering, enterprise integration, custom digital
  * products). 5 and 6 — SEO and GEO — are NOT on the live site today; this
- * copy was written fresh and should be reviewed before launch.
+ * copy was written fresh. It has been edited to describe methods only (no
+ * outcome or market claims); confirm GARV AI LABS offers both before launch.
  */
 
 export type Service = {
@@ -206,7 +207,7 @@ export const services: Service[] = [
     icon: Sparkles,
     headline: "When the answer is generated, be in it.",
     intro:
-      "More buyers now get their answer from ChatGPT, Gemini, Perplexity or an AI overview than from a list of ten blue links. Generative Engine Optimisation is the work of making sure that when those systems answer a question in your category, your business is what they cite.",
+      "A growing share of buyers now get their answer from ChatGPT, Gemini, Perplexity or an AI overview instead of a list of ten blue links. Generative Engine Optimisation is the work of making sure that when those systems answer a question in your category, your business is what they cite.",
     offerings: [
       {
         title: "Answer-engine visibility",

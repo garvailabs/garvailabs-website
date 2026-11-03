@@ -12,12 +12,15 @@ export const metadata: Metadata = {
   title: "Contact",
   description:
     "Talk to GARV AI LABS about one real workflow. Noida, Uttar Pradesh, India. garvailabs@gmail.com · +91 92866 52872",
+  alternates: { canonical: "/contact" },
 };
 
+/** Roughly how a 30-minute call runs (the 15-minute slot is a shorter version). */
 const agenda = [
   "Five minutes on the workflow and where it actually breaks",
   "Ten minutes on what we would build, and what we would not",
   "Five minutes on scope, timeline and what the first phase would cost",
+  "The rest for your questions",
 ];
 
 export default function ContactPage() {
@@ -29,8 +32,11 @@ export default function ContactPage() {
           <p className="eyebrow">Contact</p>
         </Rise>
 
-        <div className="mt-6 grid gap-14 lg:mt-0 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-        <div className="order-2 lg:order-1">
+        {/* Source order = phone order: intro, form, details. On lg a grid puts the
+            form in the right column beside both left-hand blocks, so keyboard and
+            screen-reader order always matches what is on screen. */}
+        <div className="mt-6 grid gap-14 lg:mt-0 lg:grid-cols-[0.8fr_1.2fr] lg:grid-rows-[auto_1fr] lg:gap-x-20 lg:gap-y-0">
+        <div className="lg:col-start-1 lg:row-start-1">
           <Rise from="soft">
             <p className="eyebrow hidden lg:block">Contact</p>
           </Rise>
@@ -42,7 +48,7 @@ export default function ContactPage() {
           <Rise delay={0.14} from="soft">
             <p className="mt-6 max-w-[44ch] text-md leading-[1.65] text-muted">
               Bring one process your team keeps doing by hand. We will tell you what it would take
-              to build, and say so plainly when it is not worth building.
+              to build and how the first phase would run.
             </p>
           </Rise>
 
@@ -63,9 +69,24 @@ export default function ContactPage() {
               </p>
             </div>
           </Rise>
+        </div>
 
+        <Rise delay={0.16} from="right" className="lg:col-start-2 lg:row-span-2 lg:row-start-1">
+          <div id="request" className="scroll-mt-28">
+            <h2 className="text-3xl lg:hidden">Write your request</h2>
+            <p className="mt-3 max-w-[44ch] text-base leading-[1.65] text-muted lg:hidden">
+              Tell us the workflow — we will open your email app with the details filled in.
+            </p>
+            <div className="mt-6 lg:mt-0">
+              <ContactForm />
+            </div>
+          </div>
+        </Rise>
+
+        <div className="lg:col-start-1 lg:row-start-2">
           <Rise delay={0.2} from="up">
-            <ol className="mt-10 space-y-4 border-t border-line pt-8">
+            <p className="mt-0 text-sm font-semibold text-text lg:mt-10">How a 30-minute call runs</p>
+            <ol className="mt-4 space-y-4 border-t border-line pt-6">
               {agenda.map((a, i) => (
                 <li key={a} className="flex gap-4 text-base leading-snug text-muted">
                   <span className="num shrink-0 text-sm text-muted">0{i + 1}</span>
@@ -107,18 +128,6 @@ export default function ContactPage() {
             </div>
           </Rise>
         </div>
-
-        <Rise delay={0.16} from="right" className="order-1 lg:order-2">
-          <div id="request" className="scroll-mt-28">
-            <h2 className="text-3xl lg:hidden">Write your request</h2>
-            <p className="mt-3 max-w-[44ch] text-base leading-[1.65] text-muted lg:hidden">
-              Tell us the workflow — we will open your email app with the details filled in.
-            </p>
-            <div className="mt-6 lg:mt-0">
-              <ContactForm />
-            </div>
-          </div>
-        </Rise>
         </div>
       </div>
     </section>
