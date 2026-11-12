@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="canonical" href="https://garvailabs.com/dhaba-tycoon/terms">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Terms of Service · Dhaba Tycoon</title>
+<meta name="description" content="Terms of Service for Dhaba Tycoon by Garv AI Labs.">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="/dhaba-tycoon/dhaba-icon.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Garv AI Labs site look (garvailabs.com): Inter, white, slate text, coral #ee6352 */
+  :root {
+    --bg: #ffffff; --soft: #f8fafc; --bar: #f9fafb; --ink: #111827; --ink2: #4b5563; --ink3: #6b7280;
+    --line: #e5e7eb; --coral: #ee6352; --coral2: #d85545; --coralSoft: #fef2f0; --coralLine: #f8b4ab;
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; -webkit-text-size-adjust: 100%; }
+  body { margin:0; background:var(--bg); color:var(--ink); font: 16px/1.7 Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+         -webkit-font-smoothing: antialiased; overflow-x:hidden; }
+  a { color: var(--coral); font-weight: 600; text-decoration: none; }
+  a:hover { color: var(--coral2); text-decoration: underline; text-underline-offset: 3px; }
+  b, strong { color: var(--ink); font-weight: 600; }
+
+  /* top bar, like the site's header */
+  .bar { position: sticky; top:0; z-index: 10; background: rgba(249,250,251,.92); backdrop-filter: blur(12px);
+         border-bottom: 1px solid var(--line); padding-top: env(safe-area-inset-top); }
+  .bar .in { max-width: 1200px; margin: 0 auto; padding: 8px 16px; display:flex; align-items:center; gap:10px; min-height: 64px; }
+  .game { display:flex; align-items:center; gap:10px; color: var(--ink); font-weight: 700; font-size: 1.02rem; text-decoration:none; }
+  .game:hover { color: var(--ink); text-decoration:none; }
+  .game img { width: 34px; height: 34px; border-radius: 9px; }
+  .by { margin-left:auto; display:flex; align-items:center; gap:8px; min-height:44px; padding: 0 4px; color: var(--ink3); font-size:.8rem; font-weight:500; }
+  .by:hover { text-decoration:none; color: var(--ink3); }
+  .by img { height: 30px; width:auto; display:block; }
+
+  /* hero, like the site's legal pages */
+  .hero { text-align:center; padding: 56px 16px 40px; }
+  .pill { display:inline-block; font-size:.72rem; font-weight:600; letter-spacing: .3em; text-transform: uppercase; color: var(--coral);
+          background: var(--coralSoft); border: 1px solid var(--coralLine); padding: 5px 16px; border-radius: 999px; }
+  .hero h1 { font-size: clamp(2.2rem, 8vw, 3.6rem); line-height: 1.08; font-weight: 800; letter-spacing: -0.025em; margin: 18px 0 14px; }
+  .hero p { margin: 0 auto; color: var(--ink2); max-width: 560px; font-size: 1.05rem; }
+  .meta { display:flex; flex-wrap: wrap; justify-content:center; gap: 6px 18px; margin-top: 16px; font-size: .88rem; color: var(--ink3); }
+  .meta b { font-weight:600; color: var(--ink2); }
+
+  /* layout */
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 8px 16px 72px; display: grid; gap: 24px; }
+  nav.toc { background: var(--soft); border:1px solid var(--line); border-radius: var(--radius); }
+  nav.toc details { padding: 4px 16px; }
+  nav.toc summary { cursor:pointer; list-style:none; font-weight:600; min-height:48px; display:flex; align-items:center; justify-content:space-between; }
+  nav.toc summary::-webkit-details-marker { display:none; }
+  nav.toc summary::after { content:""; width:8px; height:8px; border-right:2px solid var(--ink3); border-bottom:2px solid var(--ink3); transform: rotate(45deg) translateY(-3px); transition: transform .2s; }
+  nav.toc details[open] summary::after { transform: rotate(225deg) translateY(-3px); }
+  nav.toc ol { margin: 0 0 12px; padding: 0; list-style: none; counter-reset: t; }
+  nav.toc li { counter-increment: t; }
+  nav.toc a { display:flex; gap:10px; align-items:center; min-height: 44px; padding: 0 10px; border-radius: 10px; color: var(--ink2); font-weight:500; font-size:.94rem; }
+  nav.toc a::before { content: counter(t) "."; font-size:.8rem; color: var(--ink3); width: 22px; font-variant-numeric: tabular-nums; }
+  nav.toc a:hover { background: var(--coralSoft); color: var(--coral); text-decoration:none; }
+
+  article { min-width: 0; }
+  .highlights { display:grid; gap: 12px; grid-template-columns: 1fr; }
+  .hl { border:1px solid var(--line); border-radius: 14px; padding: 16px; display:flex; gap:12px; align-items:flex-start; background: var(--bg); }
+  .hl .ic { flex:none; width: 38px; height: 38px; border-radius: 10px; display:grid; place-items:center; background: var(--coralSoft); color: var(--coral); }
+  .hl .ic svg { width: 20px; height: 20px; }
+  .hl b { display:block; font-size: .95rem; }
+  .hl span { color: var(--ink2); font-size: .9rem; line-height: 1.55; }
+
+  section { background: var(--soft); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px 20px; margin-top: 20px; }
+  section h2 { position: relative; font-size: 1.2rem; line-height:1.35; font-weight: 700; margin: 0 0 12px; padding-left: 16px; }
+  section h2::before { content:""; position:absolute; left:0; top: .2em; bottom: .2em; width: 4px; border-radius: 4px; background: var(--coral); }
+  section p { margin: 0 0 10px; color: var(--ink2); }
+  section p:last-child { margin-bottom: 0; }
+  ul.clean { margin: 0; padding: 0; list-style: none; display:grid; gap: 8px; }
+  ul.clean li { display:flex; gap:12px; color: var(--ink2); }
+  ul.clean li::before { content:""; flex:none; width:6px; height:6px; border-radius:50%; background: var(--coral); margin-top: .72em; }
+
+  /* data list: cards on phones, a table on wide screens */
+  .data { display:grid; gap: 10px; }
+  .row { border:1px solid var(--line); border-radius: 12px; padding: 14px 16px; background: var(--bg); }
+  .row .what { font-weight:600; color: var(--ink); }
+  .row .what .v { font-weight:400; color: var(--ink2); }
+  .row .k { display:block; font-size:.7rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color: var(--ink3); margin-top: 10px; }
+  .row .v { color: var(--ink2); font-size: .95rem; }
+  .tag { display:inline-block; font-size:.8rem; font-weight:600; padding: 2px 12px; border-radius: 999px; background: var(--coralSoft); color: var(--coral);
+         border: 1px solid var(--coralLine); white-space: nowrap; }
+
+  .contact { display:flex; flex-wrap:wrap; gap: 12px; align-items:center; margin-top: 4px; }
+  .btn { display:inline-flex; align-items:center; gap:8px; min-height: 48px; padding: 0 24px; border-radius: 999px; background: var(--coral); color:#fff;
+         font-weight:600; box-shadow: 0 6px 16px rgba(238,99,82,.25); }
+  .btn:hover { background: var(--coral2); color:#fff; text-decoration:none; }
+
+  footer { border-top: 1px solid var(--line); background: var(--bar); color: var(--ink3); font-size: .88rem; }
+  footer .in { max-width:1200px; margin:0 auto; padding: 22px 16px calc(24px + env(safe-area-inset-bottom)); display:flex; flex-wrap:wrap; gap: 6px 16px; justify-content: space-between; }
+
+  @media (min-width: 641px) {
+    .bar .in { padding: 8px 24px; }
+    .by img { height: 36px; } .by { font-size: .85rem; }
+    .hero { padding: 88px 24px 56px; }
+    .wrap { padding: 8px 24px 96px; }
+    section { padding: 30px 32px; }
+    .highlights { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (min-width: 900px) {
+    .data { display: table; width: 100%; border-collapse: separate; border-spacing: 0; border:1px solid var(--line); border-radius: 12px; overflow:hidden; background: var(--bg); }
+    .data .head, .data .row { display: table-row; background: none; border:0; border-radius:0; padding:0; }
+    .data .head > div, .data .row > div { display: table-cell; padding: 13px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    .data .row:last-child > div { border-bottom: 0; }
+    .data .head > div { background: var(--soft); font-size:.7rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color: var(--ink3); }
+    .data .row .k { display:none; }
+    .data .row > div:first-child { width: 36%; }
+  }
+  @media (max-width: 899px) { .data .head { display:none; } }
+  @media (min-width: 1025px) {
+    .wrap { grid-template-columns: 250px minmax(0, 1fr); align-items: start; gap: 40px; }
+    nav.toc { position: sticky; top: 88px; }
+    nav.toc summary { pointer-events: none; }
+    nav.toc summary::after { display:none; }
+  }
+</style>
+</head>
+<body>
+<header class="bar"><div class="in">
+  <a class="game" href="#top"><img src="/dhaba-tycoon/dhaba-icon.jpg" alt="" width="34" height="34">Dhaba Tycoon</a>
+  <a class="by" href="https://garvailabs.com" target="_blank" rel="noopener" aria-label="Made by Garv AI Labs — visit garvailabs.com">
+    <span>by</span><img src="/dhaba-tycoon/garv-logo.png" alt="Garv AI Labs" width="320" height="74">
+  </a>
+</div></header>
+
+<div class="hero" id="top">
+  <span class="pill">Legal</span>
+  <h1>Terms of Service</h1>
+  <p>The rules for playing Dhaba Tycoon and buying things in it.</p>
+  <div class="meta">
+    <span>Effective <b>11 November 2026</b></span>
+    <span>App <b>com.garvailabs.dhabaready</b></span>
+  </div>
+</div>
+
+<main class="wrap" style="grid-template-columns:minmax(0,1fr);max-width:880px">
+  <article>
+    <section>
+      <h2>1. Agreement</h2>
+      <p>By downloading or playing Dhaba Tycoon ("the Game") you agree to these terms and to our <a href="/dhaba-tycoon/privacy">Privacy Policy</a>. If you don't agree, please don't use the Game.</p>
+    </section>
+    <section>
+      <h2>2. Licence</h2>
+      <p>We give you a personal, non-exclusive, non-transferable licence to play the Game on your own devices for non-commercial use. You may not copy, modify, reverse-engineer, resell or distribute the Game, or use cheats, bots or modified versions.</p>
+    </section>
+    <section>
+      <h2>3. Virtual items</h2>
+      <p>Coins, gems, upgrades and other in-game items are a limited licence to use content inside the Game. They have no real-world money value, can't be exchanged for cash and can't be transferred. We may change how virtual items work in order to balance the game.</p>
+    </section>
+    <section>
+      <h2>4. Purchases</h2>
+      <p>All purchases are processed by Google Play and follow <a href="https://play.google.com/about/play-terms/" rel="noopener">Google Play's Terms of Service</a>. Prices are shown in the Game and in Google Play before you pay. Refunds are handled under Google Play's refund policy. Purchases can be restored from the Game's <b>Settings</b>.</p>
+    </section>
+    <section>
+      <h2>5. Ad-free plan (one-time purchase)</h2>
+      <ul class="clean">
+        <li><span>The ad-free plan removes ads, seats VIP guests and stops buses automatically, and gives 2× income.</span></li>
+        <li><span>It is a <b>one-time purchase</b>: you pay once through Google Play, and it does not renew or charge you again.</span></li>
+        <li><span>It stays linked to your Google account, so it comes back after reinstalling the Game or on a new phone signed in to the same account.</span></li>
+        <li><span>If the purchase is refunded, the plan is switched off.</span></li>
+      </ul>
+    </section>
+    <section>
+      <h2>6. Ads</h2>
+      <p>The Game contains ads served by Google AdMob. Some optional rewards are given for watching an ad.</p>
+    </section>
+    <section>
+      <h2>7. Availability</h2>
+      <p>We work to keep the Game running but don't promise it will always be available or free of errors. We may update, change or stop the Game or any feature.</p>
+    </section>
+    <section>
+      <h2>8. Limitation of liability</h2>
+      <p>As far as the law allows, the Game is provided "as is", and Garv AI Labs is not liable for indirect or consequential losses arising from its use. Our total liability is limited to the amount you paid us in the 12 months before the claim.</p>
+    </section>
+    <section>
+      <h2>9. Governing law</h2>
+      <p>These terms are governed by the laws of India. Courts at Kashipur, Uttarakhand, India have jurisdiction.</p>
+    </section>
+    <section>
+      <h2>10. Contact</h2>
+      <div class="contact">
+        <a class="btn" href="mailto:admin@garvailabs.com?subject=Dhaba%20Tycoon%20terms">admin@garvailabs.com</a>
+        <span style="color:var(--ink3)">Garv AI Labs</span>
+      </div>
+    </section>
+  </article>
+</main>
+
+<footer><div class="in">
+  <span>© 2026 <a href="https://garvailabs.com" target="_blank" rel="noopener">Garv AI Labs</a> · Dhaba Tycoon</span>
+  <span><a href="/dhaba-tycoon/privacy">Privacy Policy</a> · <a href="/dhaba-tycoon/terms">Terms</a></span>
+</div></footer>
+</body>
+</html>

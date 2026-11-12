@@ -36,6 +36,8 @@ lucide-react · Inter via `next/font`. No CMS, no database, no auth.
 | `/work/[slug]` | One page each — 5 pages, statically generated |
 | `/about` | Who we are, how we work, sectors, contact |
 | `/contact` | Enquiry form |
+| `/dhaba-tycoon/privacy`, `/dhaba-tycoon/terms` | Privacy policy and terms of our Android game Dhaba Tycoon (plain HTML in `public/dhaba-tycoon/`, clean URLs via rewrites in `next.config.ts`). Linked from the Play Store listing: keep the URLs stable |
+| `/app-ads.txt` | AdMob seller declaration for our apps (`public/app-ads.txt`) |
 | `not-found` | Branded 404 |
 
 Sixteen routes in total, every one pre-rendered as static HTML.

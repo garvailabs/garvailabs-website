@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="canonical" href="https://garvailabs.com/dhaba-tycoon/privacy">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacy Policy · Dhaba Tycoon</title>
+<meta name="description" content="How Dhaba Tycoon by Garv AI Labs collects, uses and protects your information.">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="/dhaba-tycoon/dhaba-icon.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Garv AI Labs site look (garvailabs.com): Inter, white, slate text, coral #ee6352 */
+  :root {
+    --bg: #ffffff; --soft: #f8fafc; --bar: #f9fafb; --ink: #111827; --ink2: #4b5563; --ink3: #6b7280;
+    --line: #e5e7eb; --coral: #ee6352; --coral2: #d85545; --coralSoft: #fef2f0; --coralLine: #f8b4ab;
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; -webkit-text-size-adjust: 100%; }
+  body { margin:0; background:var(--bg); color:var(--ink); font: 16px/1.7 Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+         -webkit-font-smoothing: antialiased; overflow-x:hidden; }
+  a { color: var(--coral); font-weight: 600; text-decoration: none; }
+  a:hover { color: var(--coral2); text-decoration: underline; text-underline-offset: 3px; }
+  b, strong { color: var(--ink); font-weight: 600; }
+
+  /* top bar, like the site's header */
+  .bar { position: sticky; top:0; z-index: 10; background: rgba(249,250,251,.92); backdrop-filter: blur(12px);
+         border-bottom: 1px solid var(--line); padding-top: env(safe-area-inset-top); }
+  .bar .in { max-width: 1200px; margin: 0 auto; padding: 8px 16px; display:flex; align-items:center; gap:10px; min-height: 64px; }
+  .game { display:flex; align-items:center; gap:10px; color: var(--ink); font-weight: 700; font-size: 1.02rem; text-decoration:none; }
+  .game:hover { color: var(--ink); text-decoration:none; }
+  .game img { width: 34px; height: 34px; border-radius: 9px; }
+  .by { margin-left:auto; display:flex; align-items:center; gap:8px; min-height:44px; padding: 0 4px; color: var(--ink3); font-size:.8rem; font-weight:500; }
+  .by:hover { text-decoration:none; color: var(--ink3); }
+  .by img { height: 30px; width:auto; display:block; }
+
+  /* hero, like the site's legal pages */
+  .hero { text-align:center; padding: 56px 16px 40px; }
+  .pill { display:inline-block; font-size:.72rem; font-weight:600; letter-spacing: .3em; text-transform: uppercase; color: var(--coral);
+          background: var(--coralSoft); border: 1px solid var(--coralLine); padding: 5px 16px; border-radius: 999px; }
+  .hero h1 { font-size: clamp(2.2rem, 8vw, 3.6rem); line-height: 1.08; font-weight: 800; letter-spacing: -0.025em; margin: 18px 0 14px; }
+  .hero p { margin: 0 auto; color: var(--ink2); max-width: 560px; font-size: 1.05rem; }
+  .meta { display:flex; flex-wrap: wrap; justify-content:center; gap: 6px 18px; margin-top: 16px; font-size: .88rem; color: var(--ink3); }
+  .meta b { font-weight:600; color: var(--ink2); }
+
+  /* layout */
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 8px 16px 72px; display: grid; gap: 24px; }
+  nav.toc { background: var(--soft); border:1px solid var(--line); border-radius: var(--radius); }
+  nav.toc details { padding: 4px 16px; }
+  nav.toc summary { cursor:pointer; list-style:none; font-weight:600; min-height:48px; display:flex; align-items:center; justify-content:space-between; }
+  nav.toc summary::-webkit-details-marker { display:none; }
+  nav.toc summary::after { content:""; width:8px; height:8px; border-right:2px solid var(--ink3); border-bottom:2px solid var(--ink3); transform: rotate(45deg) translateY(-3px); transition: transform .2s; }
+  nav.toc details[open] summary::after { transform: rotate(225deg) translateY(-3px); }
+  nav.toc ol { margin: 0 0 12px; padding: 0; list-style: none; counter-reset: t; }
+  nav.toc li { counter-increment: t; }
+  nav.toc a { display:flex; gap:10px; align-items:center; min-height: 44px; padding: 0 10px; border-radius: 10px; color: var(--ink2); font-weight:500; font-size:.94rem; }
+  nav.toc a::before { content: counter(t) "."; font-size:.8rem; color: var(--ink3); width: 22px; font-variant-numeric: tabular-nums; }
+  nav.toc a:hover { background: var(--coralSoft); color: var(--coral); text-decoration:none; }
+
+  article { min-width: 0; }
+  .highlights { display:grid; gap: 12px; grid-template-columns: 1fr; }
+  .hl { border:1px solid var(--line); border-radius: 14px; padding: 16px; display:flex; gap:12px; align-items:flex-start; background: var(--bg); }
+  .hl .ic { flex:none; width: 38px; height: 38px; border-radius: 10px; display:grid; place-items:center; background: var(--coralSoft); color: var(--coral); }
+  .hl .ic svg { width: 20px; height: 20px; }
+  .hl b { display:block; font-size: .95rem; }
+  .hl span { color: var(--ink2); font-size: .9rem; line-height: 1.55; }
+
+  section { background: var(--soft); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px 20px; margin-top: 20px; }
+  section h2 { position: relative; font-size: 1.2rem; line-height:1.35; font-weight: 700; margin: 0 0 12px; padding-left: 16px; }
+  section h2::before { content:""; position:absolute; left:0; top: .2em; bottom: .2em; width: 4px; border-radius: 4px; background: var(--coral); }
+  section p { margin: 0 0 10px; color: var(--ink2); }
+  section p:last-child { margin-bottom: 0; }
+  ul.clean { margin: 0; padding: 0; list-style: none; display:grid; gap: 8px; }
+  ul.clean li { display:flex; gap:12px; color: var(--ink2); }
+  ul.clean li::before { content:""; flex:none; width:6px; height:6px; border-radius:50%; background: var(--coral); margin-top: .72em; }
+
+  /* data list: cards on phones, a table on wide screens */
+  .data { display:grid; gap: 10px; }
+  .row { border:1px solid var(--line); border-radius: 12px; padding: 14px 16px; background: var(--bg); }
+  .row .what { font-weight:600; color: var(--ink); }
+  .row .what .v { font-weight:400; color: var(--ink2); }
+  .row .k { display:block; font-size:.7rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color: var(--ink3); margin-top: 10px; }
+  .row .v { color: var(--ink2); font-size: .95rem; }
+  .tag { display:inline-block; font-size:.8rem; font-weight:600; padding: 2px 12px; border-radius: 999px; background: var(--coralSoft); color: var(--coral);
+         border: 1px solid var(--coralLine); white-space: nowrap; }
+
+  .contact { display:flex; flex-wrap:wrap; gap: 12px; align-items:center; margin-top: 4px; }
+  .btn { display:inline-flex; align-items:center; gap:8px; min-height: 48px; padding: 0 24px; border-radius: 999px; background: var(--coral); color:#fff;
+         font-weight:600; box-shadow: 0 6px 16px rgba(238,99,82,.25); }
+  .btn:hover { background: var(--coral2); color:#fff; text-decoration:none; }
+
+  footer { border-top: 1px solid var(--line); background: var(--bar); color: var(--ink3); font-size: .88rem; }
+  footer .in { max-width:1200px; margin:0 auto; padding: 22px 16px calc(24px + env(safe-area-inset-bottom)); display:flex; flex-wrap:wrap; gap: 6px 16px; justify-content: space-between; }
+
+  @media (min-width: 641px) {
+    .bar .in { padding: 8px 24px; }
+    .by img { height: 36px; } .by { font-size: .85rem; }
+    .hero { padding: 88px 24px 56px; }
+    .wrap { padding: 8px 24px 96px; }
+    section { padding: 30px 32px; }
+    .highlights { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (min-width: 900px) {
+    .data { display: table; width: 100%; border-collapse: separate; border-spacing: 0; border:1px solid var(--line); border-radius: 12px; overflow:hidden; background: var(--bg); }
+    .data .head, .data .row { display: table-row; background: none; border:0; border-radius:0; padding:0; }
+    .data .head > div, .data .row > div { display: table-cell; padding: 13px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    .data .row:last-child > div { border-bottom: 0; }
+    .data .head > div { background: var(--soft); font-size:.7rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color: var(--ink3); }
+    .data .row .k { display:none; }
+    .data .row > div:first-child { width: 36%; }
+  }
+  @media (max-width: 899px) { .data .head { display:none; } }
+  @media (min-width: 1025px) {
+    .wrap { grid-template-columns: 250px minmax(0, 1fr); align-items: start; gap: 40px; }
+    nav.toc { position: sticky; top: 88px; }
+    nav.toc summary { pointer-events: none; }
+    nav.toc summary::after { display:none; }
+  }
+</style>
+</head>
+<body>
+<header class="bar"><div class="in">
+  <a class="game" href="#top"><img src="/dhaba-tycoon/dhaba-icon.jpg" alt="" width="34" height="34">Dhaba Tycoon</a>
+  <a class="by" href="https://garvailabs.com" target="_blank" rel="noopener" aria-label="Made by Garv AI Labs — visit garvailabs.com">
+    <span>by</span><img src="/dhaba-tycoon/garv-logo.png" alt="Garv AI Labs" width="320" height="74">
+  </a>
+</div></header>
+
+<div class="hero" id="top">
+  <span class="pill">Legal</span>
+  <h1>Privacy Policy</h1>
+  <p>How Dhaba Tycoon uses your information, why it needs it, and the choices you have.</p>
+  <div class="meta">
+    <span>Last updated <b>12 November 2026</b></span>
+    <span>App <b>com.garvailabs.dhabaready</b></span>
+    <span>Platform <b>Android</b></span>
+  </div>
+</div>
+
+<main class="wrap">
+  <nav class="toc" aria-label="Contents">
+    <details id="toc">
+      <summary>On this page</summary>
+      <ol>
+        <li><a href="#summary">Summary</a></li>
+        <li><a href="#collect">Information we collect</a></li>
+        <li><a href="#third">Third-party services</a></li>
+        <li><a href="#ads">Ads</a></li>
+        <li><a href="#purchases">Purchases</a></li>
+        <li><a href="#notifications">Notifications</a></li>
+        <li><a href="#retention">Keeping &amp; deleting data</a></li>
+        <li><a href="#children">Children</a></li>
+        <li><a href="#changes">Changes</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <article>
+    <div class="highlights">
+      <div class="hl"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div><b>No personal details asked</b><span>No name, phone number, contacts, photos or GPS location.</span></div></div>
+      <div class="hl"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <div><b>Encrypted &amp; never sold</b><span>Data travels over HTTPS. We do not sell your data.</span></div></div>
+      <div class="hl"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></div>
+        <div><b>Delete anytime</b><span>Email us your player ID and we erase your data.</span></div></div>
+    </div>
+
+    <section id="summary">
+      <h2>1. Summary</h2>
+      <p>Dhaba Tycoon is a free game made by Garv AI Labs. It uses a random player ID, basic game and device information, Google AdMob for ads, Google Play for purchases, and Google Analytics for Firebase and Meta to measure our own ads for the game. This page explains exactly what is used and why.</p>
+    </section>
+
+    <section id="collect">
+      <h2>2. Information we collect</h2>
+      <div class="data" role="table" aria-label="Information collected">
+        <div class="head" role="row"><div role="columnheader">What</div><div role="columnheader">Why</div><div role="columnheader">Where it goes</div></div>
+        <div class="row" role="row">
+          <div class="what" role="cell">Random player ID <span class="v">(anonymous sign-in, not linked to your name)</span></div>
+          <div role="cell"><span class="k">Why</span><span class="v">Keep your game data separate from other players, and for support</span></div>
+          <div role="cell"><span class="k">Where it goes</span><span class="tag">Google Firebase</span></div>
+        </div>
+        <div class="row" role="row">
+          <div class="what" role="cell">Game progress <span class="v">(level, coins, gems, missions, customers served, play time, sessions, first/last play date, ad-free plan status)</span></div>
+          <div role="cell"><span class="k">Why</span><span class="v">Understand how the game is played, fix problems, balance the game and send in-game gifts</span></div>
+          <div role="cell"><span class="k">Where it goes</span><span class="tag">Google Firebase</span></div>
+        </div>
+        <div class="row" role="row">
+          <div class="what" role="cell">Device information <span class="v">(phone model, Android version, memory size, app version)</span></div>
+          <div role="cell"><span class="k">Why</span><span class="v">Find and fix crashes and slowdowns on specific phones</span></div>
+          <div role="cell"><span class="k">Where it goes</span><span class="tag">Google Firebase</span></div>
+        </div>
+        <div class="row" role="row">
+          <div class="what" role="cell">Advertising ID, IP address and ad interactions <span class="v">(Google may estimate an approximate, city-level location from the IP address)</span></div>
+          <div role="cell"><span class="k">Why</span><span class="v">Show, limit and measure ads, and prevent ad fraud</span></div>
+          <div role="cell"><span class="k">Where it goes</span><span class="tag">Google AdMob</span></div>
+        </div>
+        <div class="row" role="row">
+          <div class="what" role="cell">App events and advertising ID <span class="v">(install, app opens, tutorial finished, rewarded ads watched or skipped, purchases and their price)</span></div>
+          <div role="cell"><span class="k">Why</span><span class="v">Measure our own ads for the game on Google, YouTube, Facebook and Instagram: which ad brought a player and whether it was worth it</span></div>
+          <div role="cell"><span class="k">Where it goes</span><span class="tag">Google Analytics for Firebase</span> <span class="tag">Meta</span></div>
+        </div>
+        <div class="row" role="row">
+          <div class="what" role="cell">Purchase records</div>
+          <div role="cell"><span class="k">Why</span><span class="v">Deliver what you bought and keep the ad-free plan active. We never see your card or UPI details.</span></div>
+          <div role="cell"><span class="k">Where it goes</span><span class="tag">Google Play</span></div>
+        </div>
+        <div class="row" role="row">
+          <div class="what" role="cell">Saved game <span class="v">(only if you sign in with Google Play Games)</span></div>
+          <div role="cell"><span class="k">Why</span><span class="v">Carry your progress to another phone</span></div>
+          <div role="cell"><span class="k">Where it goes</span><span class="tag">Your Google account</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="third">
+      <h2>3. Third-party services</h2>
+      <p>These services process data for us under their own privacy policies:</p>
+      <ul class="clean">
+        <li><span>Google AdMob — <a href="https://policies.google.com/technologies/ads" rel="noopener">policies.google.com/technologies/ads</a></span></li>
+        <li><span>Google Firebase — <a href="https://firebase.google.com/support/privacy" rel="noopener">firebase.google.com/support/privacy</a></span></li>
+        <li><span>Meta (Facebook SDK app events) — <a href="https://www.facebook.com/privacy/policy/" rel="noopener">facebook.com/privacy/policy</a></span></li>
+        <li><span>Google Play Services, Play Games &amp; Play Billing — <a href="https://policies.google.com/privacy" rel="noopener">policies.google.com/privacy</a></span></li>
+      </ul>
+    </section>
+
+    <section id="ads">
+      <h2>4. Ads</h2>
+      <p>The game shows rewarded ads that you choose to watch, for example for free coins or a 2× income boost. Google AdMob may use your device's advertising ID and IP address (which gives an approximate location, never your GPS position) to show and measure ads and to prevent fraud. The game does not use your phone's location permission.</p>
+      <p>You can reset your advertising ID or opt out of personalised ads in your phone's settings (<b>Settings → Google → Ads</b>). The ad-free plan (a one-time purchase) removes ads.</p>
+    </section>
+
+    <section id="purchases">
+      <h2>5. Purchases</h2>
+      <p>Coin packs and the ad-free plan are sold through Google Play. The ad-free plan is a one-time purchase: pay once and it stays on your Google account, including on a new phone. Payment, receipts and refunds are handled by Google Play under its own terms. Coins and gems are play money and cannot be exchanged for real money.</p>
+    </section>
+
+    <section id="notifications">
+      <h2>6. Notifications</h2>
+      <p>If you allow them, the game sends a few reminders, for example when a daily reward is ready. You can turn them off at any time in your phone's settings.</p>
+    </section>
+
+    <section id="retention">
+      <h2>7. Keeping &amp; deleting data</h2>
+      <p>Game and device information is kept while you play and for up to 24 months after you last play, then deleted.</p>
+      <p>To have your data deleted sooner, email us the player ID shown in the game's <b>Settings</b>. We delete it within 30 days. Uninstalling the game removes the copy on your phone; a Google Play Games save can be removed from your Google account settings.</p>
+    </section>
+
+    <section id="children">
+      <h2>8. Children</h2>
+      <p>The game is not directed at children under 13 and we do not knowingly collect personal information from them. If you believe a child has given us information, contact us and we will delete it.</p>
+    </section>
+
+    <section id="changes">
+      <h2>9. Changes to this policy</h2>
+      <p>We may update this policy. The date at the top always shows the latest version, and important changes will also be shown in the game.</p>
+    </section>
+
+    <section id="contact">
+      <h2>10. Contact</h2>
+      <p>Questions about your data, or a deletion request? We usually reply within a few working days.</p>
+      <div class="contact">
+        <a class="btn" href="mailto:admin@garvailabs.com?subject=Dhaba%20Tycoon%20privacy">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+          admin@garvailabs.com</a>
+        <span style="color:var(--ink3)">Garv AI Labs</span>
+      </div>
+    </section>
+  </article>
+</main>
+
+<footer><div class="in">
+  <span>© 2026 <a href="https://garvailabs.com" target="_blank" rel="noopener">Garv AI Labs</a> · Dhaba Tycoon</span>
+  <span><a href="/dhaba-tycoon/privacy">Privacy Policy</a> · <a href="/dhaba-tycoon/terms">Terms</a></span>
+</div></footer>
+
+<script>
+  // contents list: open on wide screens, a tap-to-open list on phones; a tapped link closes it again
+  (function () {
+    var d = document.getElementById('toc'), mq = window.matchMedia('(min-width: 1025px)');
+    function sync() { d.open = mq.matches; }
+    sync(); mq.addEventListener ? mq.addEventListener('change', sync) : mq.addListener(sync);
+    d.addEventListener('click', function (e) { if (e.target.closest('a') && !mq.matches) d.open = false; });
+  })();
+</script>
+</body>
+</html>
