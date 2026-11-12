@@ -18,6 +18,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE}/contact`, changeFrequency: "yearly" as const, priority: 0.9 },
     { url: `${SITE}/privacy`, changeFrequency: "yearly" as const, priority: 0.4 },
     { url: `${SITE}/book`, changeFrequency: "monthly" as const, priority: 0.85 },
+    { url: `${SITE}/dhaba-tycoon/privacy`, changeFrequency: "yearly" as const, priority: 0.3 },
+    { url: `${SITE}/dhaba-tycoon/terms`, changeFrequency: "yearly" as const, priority: 0.3 },
     ...services.map((s) => ({
       url: `${SITE}/services/${s.slug}`,
       changeFrequency: "monthly" as const,
